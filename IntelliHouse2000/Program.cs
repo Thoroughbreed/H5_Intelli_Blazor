@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Radzen;
 using System.Reflection.PortableExecutable;
 using IntelliHouse2000.Helpers;
+using IntelliHouse2000.Services.MQTT;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,9 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 var app = builder.Build();
+
+var mqttService = app.Services.GetService<IMQTTService>();
+if (mqttService != null) await mqttService.StartAsync();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

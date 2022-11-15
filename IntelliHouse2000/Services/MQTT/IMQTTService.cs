@@ -14,4 +14,5 @@ public interface IMQTTService
     public bool IsConnected();
     public Task<bool> Disconnect();
     public Task<bool> Reconnect();
+    public Task StartAsync();
 }
