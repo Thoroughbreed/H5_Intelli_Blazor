@@ -15,6 +15,8 @@ namespace IntelliHouse2000.Pages
         [Inject]
         private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
 
+        [Inject] private  { get; set; }
+
 
         HotKeysContext? HotKeysContext;
         I18nText.LanguageTable languageTable = new I18nText.LanguageTable();
@@ -31,6 +33,6 @@ namespace IntelliHouse2000.Pages
 
         public void Dispose() => HotKeysContext.Dispose();
 
-
+        
     }
 }
