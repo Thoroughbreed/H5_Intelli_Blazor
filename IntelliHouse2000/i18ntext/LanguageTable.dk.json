@@ -6,6 +6,9 @@
   "SetHumid": "Sæt din prefererede luftfugtigheden: ",
   "SetTemp": "Sæt din prefererede temperatur: ",
   "Submit": "Indsend",
-  "DatePicker":  "Vælg en start dato: "
+  "DatePicker": "Vælg en start dato: ",
+  "Humid": "Luftfugtighed",
+  "Temp": "Temperatur",
+  "Airquality": "Luftkvalitet"
 
 }
