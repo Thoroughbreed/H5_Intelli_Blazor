@@ -6,6 +6,7 @@ using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using MQTTnet.Client.Receiving;
+using MQTTnet.Protocol;
 
 namespace IntelliHouse2000.Services.MQTT;
 
@@ -43,46 +44,49 @@ public class MQTTService : IMQTTService
 
         return clientId;
     }
+    
+    public async Task StartAsync()
+    {
+        await Connect();
+    }
+    
     public bool IsConnected()
     {
         return _mqttClient.IsConnected;
     }
-
     public async Task<bool> Connect()
     {
         try
         {
             if (!_mqttClient.IsConnected) await _mqttClient.ConnectAsync(_mqttClientOptions);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
 
         return true;
     }
-
     public async Task<bool> Reconnect()
     {
         try
         {
             await _mqttClient.ReconnectAsync();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
 
         return true;
     }
-
     public async Task<bool> Disconnect()
     {
         try
         {
             await _mqttClient.DisconnectAsync();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
@@ -92,43 +96,22 @@ public class MQTTService : IMQTTService
 
     public void Initialize(IMqttClientOptions mqttClientOptions)
     {
-        try
+        _mqttClientOptions = mqttClientOptions;
+        var factory = new MqttFactory();
+        _mqttClient = factory.CreateMqttClient();
+        _mqttClient.ConnectedHandler = new MqttClientConnectedHandlerDelegate(mqttClientConnectedEventArgs =>
         {
-            _mqttClientOptions = mqttClientOptions;
-            var factory = new MqttFactory();
-            _mqttClient = factory.CreateMqttClient();
-            _mqttClient.ConnectedHandler = new MqttClientConnectedHandlerDelegate(mqttClientConnectedEventArgs =>
+            Connected?.Invoke(this, mqttClientConnectedEventArgs);
+        });
+        _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(disconnectEventArgs =>
+        {
+            Disconnected?.Invoke(this, disconnectEventArgs);
+        });
+        _mqttClient.ApplicationMessageReceivedHandler =
+            new MqttApplicationMessageReceivedHandlerDelegate(messageReceivedArgs =>
             {
-                Connected?.Invoke(this, mqttClientConnectedEventArgs);
+                MessageReceived?.Invoke(this, messageReceivedArgs);
             });
-            _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(disconnectEventArgs =>
-            {
-                Disconnected?.Invoke(this, disconnectEventArgs);
-            });
-            _mqttClient.ApplicationMessageReceivedHandler =
-                new MqttApplicationMessageReceivedHandlerDelegate(messageReceivedArgs =>
-                {
-                    MessageReceived?.Invoke(this, messageReceivedArgs);
-                });
-        }
-        catch (Exception ex)
-        {
-            // Blergh
-        }
-    }
-
-    public async Task<bool> Subscribe(string topic)
-    {
-        try
-        {
-            await _mqttClient.SubscribeAsync(topic);
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-
-        return true;
     }
 
     public async Task<bool> Publish(MqttApplicationMessage message)
@@ -138,16 +121,40 @@ public class MQTTService : IMQTTService
             await Connect();
             await _mqttClient.PublishAsync(message);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
 
         return true;
     }
-    public async Task StartAsync()
+    public Task<bool> Publish(string topic, byte[] payload, bool retain = false, MqttQualityOfServiceLevel qos = MqttQualityOfServiceLevel.AtMostOnce)
     {
-        await Connect();
+        return Publish(new MqttApplicationMessage()
+        {
+            Topic = topic,
+            Payload = payload,
+            Retain = retain,
+            QualityOfServiceLevel = qos
+        });
+    }
+    public Task<bool> Publish(string topic, string payload, bool retain = false, MqttQualityOfServiceLevel qos = MqttQualityOfServiceLevel.AtMostOnce)
+    {
+        return Publish(topic, Encoding.UTF8.GetBytes(payload), retain, qos);
+    }
+    
+    public async Task<bool> Subscribe(string topic)
+    {
+        try
+        {
+            await _mqttClient.SubscribeAsync(topic);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
 
