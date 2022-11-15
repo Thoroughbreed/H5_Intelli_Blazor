@@ -1,24 +1,40 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar" style="background-color:blueviolet">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">IntelliHouse2000</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
+        <div class="dcontainer">
+            <a href="#" class="df-logo" aria-label="Home page">
+                <picture>
+                    <img src="" alt="IntelliHouse2000 logo" />
+                </picture>
+            </a>
+        </div>
+        <button title="Navigation menu" type="button" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <i class="fa-solid fa-bars"></i>
         </button>
+
     </div>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Home" Path="/" Icon="home"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Tabs" Icon="subject">
+                <RadzenPanelMenuItem Text="Tab1" Path="/"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Tab2" Path="/"></RadzenPanelMenuItem>
+            </RadzenPanelMenuItem>
+        </RadzenPanelMenu>
     </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private bool expandSfc;
+    private bool expandSubNavProdFloor;
+    private bool expandProcess;
+    private bool expandEquipment;
+    private bool expandExternalSys;
+    private bool expandHelp;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
@@ -26,5 +42,4 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
-
 }

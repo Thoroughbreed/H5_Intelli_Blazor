@@ -1,0 +1,43 @@
+﻿@using System.Runtime.InteropServices
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<div class="form-row align-items-center text-muted px-4">
+@*    <div class="col runtime-information">@RuntimeInformation.FrameworkDescription / @RuntimeInformation.ProcessArchitecture</div>*@
+    <div class="col-auto">
+        <span class="oi oi-globe" aria-hidden="true"></span>
+    </div>
+    <div class="col-auto">
+        <select class="form-control form-control-sm" @onchange="OnChangeCurrentLang">
+            <option value="en" selected="@(CurrentLang == "en")">English</option>
+            <option value="dk" selected="@(CurrentLang == "dk")">Dansk</option>
+            <option value="fin" selected="@(CurrentLang == "fin")">Suomi</option>
+        </select>
+    </div>
+</div>
+
+@code {
+    private string CurrentLang;
+
+    LanguageTable languageTable = new LanguageTable();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var lang = await I18nText.GetCurrentLanguageAsync();
+        if (new[] { "en", "dk", "fin" }.Contains(lang.Split('-')[0]))
+        {
+            CurrentLang = lang;
+        }
+        else
+        {
+            CurrentLang = "en";
+        }
+
+        languageTable = await I18nText.GetTextTableAsync<LanguageTable>(this);
+    }
+
+    private async Task OnChangeCurrentLang(ChangeEventArgs args)
+    {
+        CurrentLang = args.Value as string;
+        await I18nText.SetCurrentLanguageAsync(CurrentLang);
+    }
+}
