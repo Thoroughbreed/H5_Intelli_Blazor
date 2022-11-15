@@ -12,10 +12,12 @@ public class APIService : IAPIService
     private readonly HttpClient _client;
     private readonly HttpContextAccessor _httpContextAccessor;
     
-    public APIService(HttpClient client, HttpContextAccessor httpContextAccessor)
+    public APIService() // HttpClient client, HttpContextAccessor httpContextAccessor
     {
-        _client = client;
-        _httpContextAccessor = httpContextAccessor;
+        // _client = client;
+        // _httpContextAccessor = httpContextAccessor;
+        _client = new HttpClient();
+        _httpContextAccessor = new HttpContextAccessor();
         HttpClientHandler clientHandler = new();
         clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }

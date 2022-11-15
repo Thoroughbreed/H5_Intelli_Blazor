@@ -7,19 +7,46 @@
     <div class="row">
         <div class="col">
             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                @foreach()
+                @foreach (var logs in CriticalLogs)
+                {
+                    <div class="row">
+                        <RadzenCard class="rz-background-color-primary-lighter rz-shadow-3">
+                            <p><strong>@logs.Client</strong></p>
+                            <p>@logs.Message</p>
+                            <p><em>@logs.Timestamp.ToShortDateString()</em></p>
+                        </RadzenCard>
+                    </div>
+                }
             </RadzenCard>
         </div>
         <div class="col">
             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-
+@foreach (var logs in InfoLogs)
+                {
+                    <div class="row">
+                        <RadzenCard class="rz-background-color-primary-lighter rz-shadow-3">
+                            <p><strong>@logs.Client</strong></p>
+                            <p>@logs.Message</p>
+                            <p><em>@logs.Timestamp.ToShortDateString()</em></p>
+                        </RadzenCard>
+                    </div>
+                }
             </RadzenCard>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-
+@foreach (var logs in SystemLogs)
+                {
+                    <div class="row">
+                        <RadzenCard class="rz-background-color-primary-lighter rz-shadow-3">
+                            <p><strong>@logs.Client</strong></p>
+                            <p>@logs.Message</p>
+                            <p><em>@logs.Timestamp.ToShortDateString()</em></p>
+                        </RadzenCard>
+                    </div>
+                }
             </RadzenCard>
         </div>
         <div class="col">
