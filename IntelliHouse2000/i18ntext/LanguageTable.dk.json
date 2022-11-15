@@ -5,6 +5,7 @@
   "SeeAirqual": "Luftkvaliteten for hustet er: ",
   "SetHumid": "Sæt din prefererede luftfugtigheden: ",
   "SetTemp": "Sæt din prefererede temperatur: ",
-  "Submit": "Indsend"
+  "Submit": "Indsend",
+  "DatePicker":  "Vælg en start dato: "
 
 }

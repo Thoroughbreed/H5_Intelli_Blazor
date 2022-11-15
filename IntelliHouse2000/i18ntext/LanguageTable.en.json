@@ -5,6 +5,7 @@
   "SeeAirqual": "The Airquality for the house is: ",
   "SetHumid": "Set you prefered humidity: ",
   "SetTemp": "Set you prefered tempretur: ",
-  "Submit": "Submit"
+  "Submit": "Submit",
+  "DatePicker": "Choose a start Date: "
 
 }
