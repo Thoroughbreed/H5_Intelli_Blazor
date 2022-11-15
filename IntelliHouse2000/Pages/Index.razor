@@ -1,30 +1,7 @@
 ﻿@page "/"
-@inject IToastService ToastService
-@inject HotKeys HotKeys
-@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @implements IDisposable
 
 <PageTitle>Index</PageTitle>
 
 <h1>@languageTable["HelloWorld"]</h1>
-
-
-@code {
-    HotKeysContext? HotKeysContext;
-    LanguageTable languageTable = new LanguageTable();
-
-    protected override async Task OnInitializedAsync()
-    {
-        languageTable = await I18nText.GetTextTableAsync<LanguageTable>(this);
-        this.HotKeysContext = this.HotKeys.CreateContext()
-            .Add(ModKeys.None, Keys.F8, Toaster);
-    }
-
-    void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
-
-    public void Dispose() => this.HotKeysContext.Dispose();
-
-
-
-}
 
