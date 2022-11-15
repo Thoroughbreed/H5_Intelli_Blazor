@@ -1,17 +1,14 @@
 ﻿<div class="top-row ps-3 navbar" style="background-color:blueviolet">
     <div class="container-fluid">
-        <div class="container">
-            <a href="#" aria-label="Home page">
-                <picture>
-                    <img src="/Images/Intellihouse2000Logo.png" alt="IntelliHouse2000 logo" style="width:120%"/>
-                </picture>
-            </a>
-        </div>
-        <button title="Navigation menu" type="button" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-
+        <a href="#" aria-label="Home page">
+            <picture>
+                <img src="/Images/Intellihouse2000Logo.png" alt="IntelliHouse2000 logo" style="width:100%" />
+            </picture>
+        </a>
     </div>
+    <button title="Navigation menu" type="button" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
