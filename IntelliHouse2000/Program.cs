@@ -1,13 +1,21 @@
+using Blazored.Toast;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using IntelliHouse2000.Data;
+using Radzen;
+using System.Reflection.PortableExecutable;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddBlazoredToast();
+builder.Services.AddHotKeys();
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 
 var app = builder.Build();
 

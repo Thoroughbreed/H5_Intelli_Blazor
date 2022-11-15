@@ -1,8 +1,13 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazored.Toast.Configuration;
+@inherits LayoutComponentBase
 
 <PageTitle>IntelliHouse2000</PageTitle>
 
 <div class="page">
+    <RadzenContextMenu />
+    <RadzenTooltip />
+    <RadzenNotification />
+    <RadzenDialog />
     <div class="sidebar">
         <NavMenu/>
     </div>
@@ -10,7 +15,15 @@
     <main>
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+        </div>      
+        <BlazoredToasts Position="ToastPosition.BottomCenter"
+                                      Timeout="10"
+                                      IconType="IconType.FontAwesome"
+                                      ErrorIcon="fas fa-times-circle"
+                                      InfoIcon="fas fa-info"
+                                      SuccessIcon="fas fa-check"
+                                      WarningIcon="fas fa-exclamation-triangle"
+                                      MaxToastCount="3" />
 
         <article class="content px-4">
             @Body
