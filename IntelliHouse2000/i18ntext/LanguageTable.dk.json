@@ -1,4 +1,10 @@
 {
-  "HelloWorld": "Hej Verden!"
+  "HelloWorld": "Hej Verden!",
+  "SeeHumid": "Luftfugtigheden i rummet er: ",
+  "SeeTemp": "Temperaturen i rummet er: ",
+  "SeeAirqual": "Luftkvaliteten for hustet er: ",
+  "SetHumid": "Sæt din prefererede luftfugtigheden: ",
+  "SetTemp": "Sæt din prefererede temperatur: ",
+  "Submit": "Indsend"
 
 }

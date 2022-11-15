@@ -4,3 +4,167 @@
 <PageTitle>Climate</PageTitle>
 
 
+<div class="text-center container-fluid">
+    <div class="row">
+        <RadzenTabs TabPosition="TabPosition.Top" style="margin: 20px auto;" class="rz-shadow-6">
+            <Tabs>
+                <RadzenTabsItem Text="Kitchen">
+                    <div class="col-4">
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
+                            <RadzenLabel Text="Humidity" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
+                            <RadzenLabel Text="Tempretrue" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                    </div>
+                    <div class="col-8">
+                        @*<RadzenChart>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Humid" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Temp" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+
+                        <RadzenValueAxis Formatter="@FormatAsUSD">
+                        <RadzenGridLines Visible="true" />
+                        <RadzenAxisTitle Text="Revenue in USD" />
+                        </RadzenValueAxis>
+                        </RadzenChart>*@
+
+                    </div>
+                </RadzenTabsItem>
+
+                <RadzenTabsItem Text="Livingroom">
+                    <div class="col-4">
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
+                            <RadzenLabel Text="Humidity" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
+                            <RadzenLabel Text="Tempretrue" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                    </div>
+                    <div class="col-8">
+                        @*<RadzenChart>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Humid" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Temp" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+
+                        <RadzenValueAxis Formatter="@FormatAsUSD">
+                        <RadzenGridLines Visible="true" />
+                        <RadzenAxisTitle Text="Revenue in USD" />
+                        </RadzenValueAxis>
+                        </RadzenChart>*@
+
+                    </div>
+                </RadzenTabsItem>
+
+                <RadzenTabsItem Text="BedRoom">
+                    <div class="col-4">
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
+                            <RadzenLabel Text="Humidity" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                            <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
+                            <RadzenLabel Text="Tempretrue" /><br /><br />
+
+                            <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                            <RadzenTextBox TValue="int" />
+                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+
+                        </RadzenCard>
+                    </div>
+                    <div class="col-8">
+                        @*<RadzenChart>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Humid" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Temp" ValueProperty="">
+                        <RadzenMarkers MarkerType="MarkerType.Circle" />
+                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                        </RadzenLineSeries>
+                        <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+
+                        <RadzenValueAxis Formatter="@FormatAsUSD">
+                        <RadzenGridLines Visible="true" />
+                        <RadzenAxisTitle Text="Revenue in USD" />
+                        </RadzenValueAxis>
+                        </RadzenChart>*@
+
+                    </div>
+                </RadzenTabsItem>
+
+            </Tabs>
+        </RadzenTabs>
+    </div>
+
+    <div class="row">
+        <RadzenCard>
+            <div class="col-4">
+                <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                    <RadzenLabel Text="@languageTable["SeeAirqual"]" /> <br />
+                    <RadzenLabel Text="AirQuality" /><br /><br />
+                </RadzenCard>
+            </div>
+            <div class="col-8">
+                @*<RadzenChart>
+                <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Humid" ValueProperty="">
+                <RadzenMarkers MarkerType="MarkerType.Circle" />
+                <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                </RadzenLineSeries>
+                <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Temp" ValueProperty="">
+                <RadzenMarkers MarkerType="MarkerType.Circle" />
+                <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                </RadzenLineSeries>
+                <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+
+                <RadzenValueAxis Formatter="@FormatAsUSD">
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Revenue in USD" />
+                </RadzenValueAxis>
+                </RadzenChart>*@
+
+            </div>
+        </RadzenCard>
+    </div>
+</div>
