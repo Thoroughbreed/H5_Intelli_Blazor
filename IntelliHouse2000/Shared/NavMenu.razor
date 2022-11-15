@@ -1,4 +1,5 @@
-﻿<div class="top-row ps-3 navbar" style="background-color:blueviolet">
+﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+<div class="top-row ps-3 navbar" style="background-color:blueviolet">
     <div class="container-fluid">
         <a href="#" aria-label="Home page">
             <picture>
@@ -15,9 +16,9 @@
 
     <nav class="flex-column">
         <RadzenPanelMenu>
-            <RadzenPanelMenuItem Text="Home" Path="/" Icon="home"></RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="Log" Path="/Log" Icon="inventory_2"></RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="Climate" Path="/Climate" Icon="climate_mini_split"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="@languageTable["Home"]" Path="/" Icon="home"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="@languageTable["Log"]" Path="/Log" Icon="inventory_2"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="@languageTable["Climate"]" Path="/Climate" Icon="climate_mini_split"></RadzenPanelMenuItem>
 @*            <RadzenPanelMenuItem Text="Tabs" Icon="subject">
                 <RadzenPanelMenuItem Text="Tab1" Path="/"></RadzenPanelMenuItem>
                 <RadzenPanelMenuItem Text="Tab2" Path="/"></RadzenPanelMenuItem>
@@ -28,14 +29,14 @@
 
 @code {
     private bool collapseNavMenu = true;
-    private bool expandSfc;
-    private bool expandSubNavProdFloor;
-    private bool expandProcess;
-    private bool expandEquipment;
-    private bool expandExternalSys;
-    private bool expandHelp;
+    LanguageTable languageTable = new LanguageTable();
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        languageTable = await I18nText.GetTextTableAsync<I18nText.LanguageTable>(this);
+    }
 
     private void ToggleNavMenu()
     {

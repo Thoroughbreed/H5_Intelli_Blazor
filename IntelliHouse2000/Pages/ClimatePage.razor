@@ -1,7 +1,7 @@
 ﻿@page "/Climate"
 @implements IDisposable
 
-<PageTitle>Climate</PageTitle>
+<PageTitle>@languageTable["Climate"]</PageTitle>
 
 
 <div class="text-center container-fluid">
@@ -38,11 +38,11 @@
                         </div>
                         <div class="col-7">
                             <RadzenChart>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="Humid" ValueProperty="Humid">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="@languageTable["Humid"]" ValueProperty="Humid">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="Temp" ValueProperty="Temp">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="@languageTable["Temp"]" ValueProperty="Temp">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
@@ -86,11 +86,11 @@
                         </div>
                         <div class="col-7">
                             <RadzenChart>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesLivingroom" CategoryProperty="Timestamp" Title="Humid" ValueProperty="Humid">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesLivingroom" CategoryProperty="Timestamp" Title="@languageTable["Humid"]" ValueProperty="Humid">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesLivingroom" CategoryProperty="Timestamp" Title="Temp" ValueProperty="Temp">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesLivingroom" CategoryProperty="Timestamp" Title="@languageTable["Temp"]" ValueProperty="Temp">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
@@ -134,11 +134,11 @@
                         </div>
                         <div class="col-7">
                             <RadzenChart>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesBedroom" CategoryProperty="Timestamp" Title="Humid" ValueProperty="Humid">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesBedroom" CategoryProperty="Timestamp" Title="@languageTable["Humid"]" ValueProperty="Humid">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
-                                <RadzenLineSeries Smooth="true" Data="@APIClimatesBedroom" CategoryProperty="Timestamp" Title="Temp" ValueProperty="Temp">
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesBedroom" CategoryProperty="Timestamp" Title="@languageTable["Temp"]" ValueProperty="Temp">
                                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                                     <RadzenSeriesDataLabels Visible="true" />
                                 </RadzenLineSeries>
@@ -173,7 +173,7 @@
             </div>
             <div class="col-7">
                 <RadzenChart>
-                    <RadzenLineSeries Smooth="true" Data="@Airqualities" CategoryProperty="Timestamp" Title="AirQuality" ValueProperty="Quality">
+                    <RadzenLineSeries Smooth="true" Data="@Airqualities" CategoryProperty="Timestamp" Title="@languageTable["Airquality"]" ValueProperty="Quality">
                         <RadzenMarkers MarkerType="MarkerType.Circle" />
                         <RadzenSeriesDataLabels Visible="true" />
                     </RadzenLineSeries>

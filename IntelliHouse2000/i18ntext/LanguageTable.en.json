@@ -1,11 +1,19 @@
 {
+  "Home": "Home",
   "HelloWorld": "Hello World!",
+
+  "Climate": "Climate",
   "SeeHumid": "The humidity in this room is: ",
   "SeeTemp": "The tempreture in this room is: ",
   "SeeAirqual": "The Airquality for the house is: ",
   "SetHumid": "Set you prefered humidity: ",
   "SetTemp": "Set you prefered tempretur: ",
   "Submit": "Submit",
-  "DatePicker": "Choose a start Date: "
+  "DatePicker": "Choose a start Date: ",
+  "Humid": "Humidity",
+  "Temp": "Tempretur",
+  "Airquality": "Airquality",
+
+  "Log": "Log"
 
 }

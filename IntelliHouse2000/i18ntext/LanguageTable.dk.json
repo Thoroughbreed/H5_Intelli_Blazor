@@ -1,11 +1,21 @@
 {
+  "Home": "Hjem",
   "HelloWorld": "Hej Verden!",
+
+  "Climate": "Klima",
   "SeeHumid": "Luftfugtigheden i rummet er: ",
   "SeeTemp": "Temperaturen i rummet er: ",
   "SeeAirqual": "Luftkvaliteten for hustet er: ",
   "SetHumid": "Sæt din prefererede luftfugtigheden: ",
   "SetTemp": "Sæt din prefererede temperatur: ",
   "Submit": "Indsend",
-  "DatePicker":  "Vælg en start dato: "
+  "DatePicker": "Vælg en start dato: ",
+  "Humid": "Luftfugtighed",
+  "Temp": "Temperatur",
+  "Airquality": "Luftkvalitet",
+
+  "Log": "Log"
+
+
 
 }
