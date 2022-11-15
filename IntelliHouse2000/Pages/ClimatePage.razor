@@ -9,44 +9,52 @@
         <RadzenTabs TabPosition="TabPosition.Top" style="margin: 20px auto;" class="rz-shadow-6">
             <Tabs>
                 <RadzenTabsItem Text="Kitchen">
-                    <div class="col-4">
-                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                            <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
-                            <RadzenLabel Text="Humidity" /><br /><br />
+                    <div class="row">
+                        <div class="col-3">
+                            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                                <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
+                                <RadzenLabel Text="@APIClimateKitchen.Humid.ToString()" /><br /><br />
 
-                            <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                            <RadzenTextBox TValue="int" />
-                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                                <RadzenNumeric @bind-Value="SetClimateKitchen.SetHumid" TValue="int" />
+                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
-                        </RadzenCard>
-                        <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                            <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
-                            <RadzenLabel Text="Tempretrue" /><br /><br />
+                            </RadzenCard>
+                            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                                <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
+                                <RadzenLabel Text="@APIClimateKitchen.Temp.ToString()" /><br /><br />
 
-                            <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                            <RadzenTextBox TValue="int" />
-                            <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                                <RadzenNumeric @bind-Value="SetClimateKitchen.SetTemp" TValue="int" />
+                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
-                        </RadzenCard>
-                    </div>
-                    <div class="col-8">
-                        @*<RadzenChart>
-                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Humid" ValueProperty="">
-                        <RadzenMarkers MarkerType="MarkerType.Circle" />
-                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
-                        </RadzenLineSeries>
-                        <RadzenLineSeries Smooth="true" Data="" CategoryProperty="" Title="Temp" ValueProperty="">
-                        <RadzenMarkers MarkerType="MarkerType.Circle" />
-                        <RadzenSeriesDataLabels Visible="@showDataLabels" />
-                        </RadzenLineSeries>
-                        <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+                            </RadzenCard>
+                        </div>
+                        <div class="col-2">
+                            <RadzenCard>
+                                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
+                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="MM/dd/yyyy HH:mm" Class="w-100" /> @*Change=@(args => OnChange(args, "DatePicker with time", "MM/dd/yyyy HH:mm"))*@
+                            </RadzenCard>
+                        </div>
+                        <div class="col-7">
+                            <RadzenChart>
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="Humid" ValueProperty="Humid">
+                                    <RadzenMarkers MarkerType="MarkerType.Circle" />
+                                    <RadzenSeriesDataLabels Visible="true" />
+                                </RadzenLineSeries>
+                                <RadzenLineSeries Smooth="true" Data="@APIClimatesKitchen" CategoryProperty="Timestamp" Title="Temp" ValueProperty="Temp">
+                                    <RadzenMarkers MarkerType="MarkerType.Circle" />
+                                    <RadzenSeriesDataLabels Visible="true" />
+                                </RadzenLineSeries>
+                                @*<RadzenCategoryAxis Padding="20" Formatter="@DateTime" />
 
-                        <RadzenValueAxis Formatter="@FormatAsUSD">
-                        <RadzenGridLines Visible="true" />
-                        <RadzenAxisTitle Text="Revenue in USD" />
-                        </RadzenValueAxis>
-                        </RadzenChart>*@
+                                <RadzenValueAxis Formatter="@FormatAsUSD">
+                                <RadzenGridLines Visible="true" />
+                                <RadzenAxisTitle Text="Revenue in USD" />
+                                </RadzenValueAxis>*@
+                            </RadzenChart>
 
+                        </div>
                     </div>
                 </RadzenTabsItem>
 
@@ -54,19 +62,19 @@
                     <div class="col-4">
                         <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                             <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
-                            <RadzenLabel Text="Humidity" /><br /><br />
+                            <RadzenLabel Text="@APIClimateLivingroom.Humid.ToString()" /><br /><br />
 
                             <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                            <RadzenTextBox TValue="int" />
+                            <RadzenNumeric @bind-Value="SetClimateLivingroom.SetHumid" TValue="int" />
                             <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                         </RadzenCard>
                         <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                             <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
-                            <RadzenLabel Text="Tempretrue" /><br /><br />
+                            <RadzenLabel Text="@APIClimateLivingroom.Temp.ToString()" /><br /><br />
 
                             <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                            <RadzenTextBox TValue="int" />
+                            <RadzenNumeric @bind-Value="SetClimateLivingroom.SetTemp" TValue="int" />
                             <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                         </RadzenCard>
@@ -92,23 +100,23 @@
                     </div>
                 </RadzenTabsItem>
 
-                <RadzenTabsItem Text="BedRoom">
+                <RadzenTabsItem Text="Bedroom">
                     <div class="col-4">
                         <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                             <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
-                            <RadzenLabel Text="Humidity" /><br /><br />
+                            <RadzenLabel Text="@APIClimateBedroom.Humid.ToString()" /><br /><br />
 
                             <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                            <RadzenTextBox TValue="int" />
+                            <RadzenNumeric @bind-Value="SetClimateBedroom.SetHumid" TValue="int" />
                             <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                         </RadzenCard>
                         <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                             <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
-                            <RadzenLabel Text="Tempretrue" /><br /><br />
+                            <RadzenLabel Text="@APIClimateBedroom.Temp.ToString()" /><br /><br />
 
                             <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                            <RadzenTextBox TValue="int" />
+                            <RadzenNumeric @bind-Value="SetClimateBedroom.SetTemp" TValue="int" />
                             <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                         </RadzenCard>
@@ -143,7 +151,7 @@
             <div class="col-4">
                 <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                     <RadzenLabel Text="@languageTable["SeeAirqual"]" /> <br />
-                    <RadzenLabel Text="AirQuality" /><br /><br />
+                    <RadzenLabel Text="@Airquality.Quality.ToString()" /><br /><br />
                 </RadzenCard>
             </div>
             <div class="col-8">
