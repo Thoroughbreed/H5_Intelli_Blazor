@@ -17,19 +17,4 @@
       <None Remove="i18ntext\LanguageTable.dk.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Include="wwwroot\css\bootstrap\bootstrap.css.map" />
-      <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
-      <None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
-      <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
-      <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
-      <None Include="wwwroot\css\open-iconic\README.md" />
-      <None Include="wwwroot\Images\404-illustration.svg" />
-      <None Include="wwwroot\Images\danfoss-logo-mobile.svg" />
-      <None Include="wwwroot\Images\danfoss-logo.svg" />
-      <None Include="wwwroot\Images\maintenance-gears.svg" />
-      <None Include="wwwroot\js\PageHeader.js" />
-      <None Include="wwwroot\pdf\MR_ED_Assy_00.pdf" />
-    </ItemGroup>
-
 </Project>
