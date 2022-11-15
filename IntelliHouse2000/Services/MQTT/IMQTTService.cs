@@ -4,7 +4,6 @@ using MQTTnet.Client.Options;
 
 namespace IntelliHouse2000.Services.MQTT;
 
-[IgnoreService]
 public interface IMQTTService
 {
     public Task<bool> Publish(MqttApplicationMessage message);
