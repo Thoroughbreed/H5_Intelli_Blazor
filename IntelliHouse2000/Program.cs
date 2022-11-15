@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Localization;
 using Radzen;
 using System.Reflection.PortableExecutable;
+using IntelliHouse2000.Helpers;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
 
 builder.Services.AddI18nText();
+
+builder.RegisterDependencies();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
