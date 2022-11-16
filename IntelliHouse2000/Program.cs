@@ -22,6 +22,9 @@ builder.Services.AddScoped<ContextMenuService>();
 
 builder.Services.AddI18nText();
 
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+
 builder.RegisterDependencies();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>

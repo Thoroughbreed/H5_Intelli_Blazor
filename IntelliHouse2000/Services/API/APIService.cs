@@ -10,16 +10,14 @@ namespace IntelliHouse2000.Services.API;
 public class APIService : IAPIService
 {
     private readonly HttpClient _client;
-    private readonly HttpContextAccessor _httpContextAccessor;
+    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly string _apiBaseUrl;
     
-    public APIService(IConfiguration config) // HttpClient client, HttpContextAccessor httpContextAccessor
+    public APIService(IConfiguration config, HttpClient client, IHttpContextAccessor httpContextAccessor)
     {
         _apiBaseUrl = config["ApiBaseUrl"];
-        // _client = client;
-        // _httpContextAccessor = httpContextAccessor;
-        _client = new HttpClient();
-        _httpContextAccessor = new HttpContextAccessor();
+        _client = client;
+        _httpContextAccessor = httpContextAccessor;
         HttpClientHandler clientHandler = new();
         clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }
