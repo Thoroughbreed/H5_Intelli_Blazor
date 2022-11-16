@@ -10,14 +10,14 @@ namespace IntelliHouse2000.Services.API;
 public class APIService : IAPIService
 {
     private readonly HttpClient _client;
-    private readonly HttpContextAccessor _httpContextAccessor;
-    
-    public APIService() // HttpClient client, HttpContextAccessor httpContextAccessor
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly string _apiBaseUrl;
+
+    public APIService(IConfiguration config, HttpClient client, IHttpContextAccessor httpContextAccessor)
     {
-        // _client = client;
-        // _httpContextAccessor = httpContextAccessor;
-        _client = new HttpClient();
-        _httpContextAccessor = new HttpContextAccessor();
+        _apiBaseUrl = config["ApiBaseUrl"];
+        _client = client;
+        _httpContextAccessor = httpContextAccessor;
         HttpClientHandler clientHandler = new();
         clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }
@@ -33,7 +33,7 @@ public class APIService : IAPIService
     public async Task<List<LogMessage>> GetCriticalLogsAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "critical"));
+        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(_apiBaseUrl + "critical"));
         if (logs != null)
         {
             return logs.Take(3).ToList();
@@ -45,7 +45,7 @@ public class APIService : IAPIService
     public async Task<List<LogMessage>> GetSystemLogsAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "system"));
+        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(_apiBaseUrl + "system"));
         if (logs != null)
         {
             return logs.Take(3).ToList();
@@ -56,7 +56,7 @@ public class APIService : IAPIService
     public async Task<List<LogMessage>> GetInfoLogsAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "info"));
+        var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(_apiBaseUrl + "info"));
         if (logs != null)
         {
             return logs.Take(3).ToList();
@@ -68,14 +68,14 @@ public class APIService : IAPIService
     {
         await InitializeHttpClient();
         string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={ts}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"kitchen?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
     public async Task<APIClimate> GetKitchenAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(Constants.ApiBaseUrl + "kitchen/1"));
+        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(_apiBaseUrl + "kitchen/1"));
         return logs ?? new APIClimate();
     }
     
@@ -83,14 +83,14 @@ public class APIService : IAPIService
     {
         await InitializeHttpClient();
         string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss"): null;
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={ts}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"bedroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
     public async Task<APIClimate> GetBedroomAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(Constants.ApiBaseUrl + "bedroom/1"));
+        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(_apiBaseUrl + "bedroom/1"));
         return logs ?? new APIClimate();
     }
     
@@ -98,27 +98,27 @@ public class APIService : IAPIService
     {
         await InitializeHttpClient();
         string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={ts}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"livingroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
     public async Task<APIClimate> GetlivingroomAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(Constants.ApiBaseUrl + "livingroom/1"));
+        var logs = await _client.GetFromJsonAsync<APIClimate>(new Uri(_apiBaseUrl + "livingroom/1"));
         return logs ?? new APIClimate();
     }
 
     public async Task<List<Airquality>> GetAirqualityListAsync()
     {
         await InitializeHttpClient();
-        var result = await _client.GetFromJsonAsync<List<Airquality>>(new Uri(Constants.ApiBaseUrl + "airq"));
+        var result = await _client.GetFromJsonAsync<List<Airquality>>(new Uri(_apiBaseUrl + "airq"));
         return result ?? new List<Airquality>();
     }
     public async Task<Airquality> GetAirqualityAsync()
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<Airquality>(new Uri(Constants.ApiBaseUrl + "airq/1"));
+        var logs = await _client.GetFromJsonAsync<Airquality>(new Uri(_apiBaseUrl + "airq/1"));
         return logs ?? new Airquality();
     }
 
