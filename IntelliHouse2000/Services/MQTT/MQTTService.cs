@@ -142,12 +142,25 @@ public class MQTTService : IMQTTService
     {
         return Publish(topic, Encoding.UTF8.GetBytes(payload), retain, qos);
     }
-    
+
     public async Task<bool> Subscribe(string topic)
     {
         try
         {
             await _mqttClient.SubscribeAsync(topic);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    public async Task<bool> Unsubscribe(string topic)
+    {
+        try
+        {
+            await _mqttClient.UnsubscribeAsync(topic);
         }
         catch (Exception)
         {

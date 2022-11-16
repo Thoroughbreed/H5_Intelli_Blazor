@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using IntelliHouse2000.Models.Alarm
 @implements IDisposable
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home</PageTitle>
 
-<h1>@languageTable["HelloWorld"]</h1>
-
+<RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
+<RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+<RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>

@@ -13,6 +13,12 @@
   "Humid": "Luftfugtighed",
   "Temp": "Temperatur",
   "Airquality": "Luftkvalitet",
+  "ToasterError": "Fejl",
+  "ToasterSetHumidError": "kunne IKKE sætte Luftfugtigheden til: ",
+  "ToasterSetTempError": "kunne IKKE sætte Temperaturen til: ",
+  "ToasterSucces": "Succesfuldt",
+  "ToasterSetHumidSucces": "Succesfuldt sætte Luftfugtigheden til: ",
+  "ToasterSetTempSucces": "Succesfuldt sætte Temperaturen til: ",
 
   "Log": "Log"
 
