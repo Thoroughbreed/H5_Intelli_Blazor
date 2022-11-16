@@ -1,4 +1,6 @@
-﻿namespace IntelliHouse2000.Services.Alarm;
+﻿using IntelliHouse2000.Models.Alarm;
+
+namespace IntelliHouse2000.Services.Alarm;
 
 public interface IAlarmService
 {

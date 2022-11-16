@@ -1,4 +1,5 @@
 ﻿using Blazored.Toast.Services;
+using IntelliHouse2000.Models.Alarm;
 using Microsoft.AspNetCore.Components;
 using IntelliHouse2000.Services.Alarm;
 

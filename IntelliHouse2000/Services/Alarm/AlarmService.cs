@@ -1,4 +1,5 @@
 ﻿using IntelliHouse2000.Helpers;
+using IntelliHouse2000.Models.Alarm;
 using IntelliHouse2000.Services.MQTT;
 using MQTTnet.Protocol;
 
@@ -16,11 +17,4 @@ public class AlarmService : IAlarmService
     {
         return _mqttService.Publish(Constants.MqttArmedTopic, ((int)state).ToString(), false, MqttQualityOfServiceLevel.AtLeastOnce);
     }
-}
-
-public enum ArmedState
-{
-    Disarmed = 0,
-    PartiallyArmed = 1,
-    FullyArmed = 2
 }
