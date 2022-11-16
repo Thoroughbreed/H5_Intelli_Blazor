@@ -6,20 +6,6 @@
 [![Forks][forks-shield]][forks-url]
 [![License][license-shield]][license-url]
 
-1. Der laves en Blazor applikation med følgende krav:
-- Henter data fra Thingspeak og præsenterer dem i grafer
-- Der skal være mulighed for at bestemme start og sluttidspunkter for data
-- Der skal være mulighed for at kunne styre en servo eller lignende via MQTT (MQTT.NET)
-
-2. Der laves et lokalt webApi, der jævnligt henter data fra ThingSpeak og gemmer dem i en database, f.eks. SQLite.
-- Mobil App'en skal tilpasses, således at den nu henter sine data fra det lokale WebApi vha. en krypteret TLS forbindelse
-- WebApi benytter en background service til at hente data fra Thingspeak.
-
-3. Der laves sikkerhed på Blazor applikationen med Auth0 eller egen Duende Authorizationserver.
-- Kun authentikerede brugere med Read permission må kunne hente data fra WebApi.
-- Brugere med Write permission skal også kunne slette gamle data i WebApi
-
-
 # Intelligent house Blazor
 #### H5 Blazor 3 group project
 <!-- TABLE OF CONTENTS -->
@@ -43,10 +29,10 @@
 
 
 # Case
-Build a APP for the [Intelligent House](https://github.com/Thoroughbreed/H5_Embedded_Project)
+Build a Blazor server (or webassembly) web application for the [Intelligent House](https://github.com/Thoroughbreed/H5_Embedded_Project)
 
 - Home page for alarm
-- Page for log with 3 tabs for 3 log-levels
+- Page for log with 3 tabs for 3 log-levels <!-- NH_TODO: Update when Jan merges log page into develop -->
 - Page for climate with 3 tabs for 3 rooms
 
 
@@ -54,17 +40,21 @@ Build a APP for the [Intelligent House](https://github.com/Thoroughbreed/H5_Embe
 
 
 # Requirements
-- [x] Can show current (latest measurement) of temperature and humidity and possibly other information.
-- [x] Can show a graph of the measurements, where you can choose between the last hour, day and week.
-- [x] There must be a button that can activate a servo via MQTT (and simulate opening a window or turning on the ventilation).
-- [x] The app must be built with the MVVM design pattern and Dependency Injection.
-- [x] Can display recent data if the network is interrupted.
-- [X] Is robust against unstable network connection.
-- [x] The project is submitted in Github with a good Readme file and presented to the class. The readme file also marks which objectives have been met.
+- [x] Henter data fra ~~Thingspeak~~ og præsenterer dem i grafer
+  - [x] Vi henter data fra en database da vi ikke bruger Thingspeak
+- [x] Der skal være mulighed for at bestemme start og sluttidspunkter for data
+- [x] Der skal være mulighed for at kunne styre en servo eller lignende via MQTT (MQTT.NET)
 
-## Optionel Requirements
-- [x] Possibility to select different measurement sessions, e.g. corresponding to different rooms in the house.
-- [x] You can also wish for an alarm that notifies you that the temperature has gone beyond a given limit.
+- [ ] Der laves et lokalt webApi, der ~~jævnligt henter data fra ThingSpeak og~~ gemmer dem i en database, f.eks. SQLite.
+  - [x] Api henter data fra vores eksiterende database
+- [x] Mobil App'en skal tilpasses, således at den nu henter sine data fra det lokale WebApi vha. en krypteret TLS forbindelse
+- [ ] ~~WebApi benytter en background service til at hente data fra Thingspeak.~~
+  - [x] Vi bruger ikke thingspeak
+
+## Optional Requirements
+- [ ] Der laves sikkerhed på Blazor applikationen med Auth0 eller egen Duende Authorizationserver.
+  - [ ] Kun authentikerede brugere med Read permission må kunne hente data fra WebApi.
+  - [ ] Brugere med Write permission skal også kunne slette gamle data i WebApi
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -94,6 +84,7 @@ All of this is then displayed on the App for the **IntelliHouse2000**, **Intelli
 ![Folder structure](/Docs/FolderStructure.png)
 
 We use MVVM, Services, Repositories and Helpers 
+<!-- NH_TODO: Change -->
 
 And uses FBF (Folder By Feature)
 
@@ -102,8 +93,9 @@ And uses FBF (Folder By Feature)
 
 
 # API Calls
+<!-- NH_TODO: Create proper api documentaiton -->
 
-Bais URL : https://mqtt-api.tved.it/
+Base URL : https://mqtt-api.tved.it/
 
 - /
 - /all
@@ -116,18 +108,7 @@ Bais URL : https://mqtt-api.tved.it/
 - /livingroom
 - /airq
 
-
-# MessageCenter
-| Topics								| Method	|
-| :------------------------------------ | :-------- |
-| AlarmArmedSubject						| Pub/Sub	|
-| AlarmPartiallyArmedSubject			| Pub/Sub	|
-| AlarmFullyArmedSubject				| Pub/Sub	|
-| Set-Humid								| Pub/Sub	|
-| Set-Temp								| Pub/Sub	|
-
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 # MQTT Topics
 | Topics                               | Access   | Method  |
@@ -145,32 +126,16 @@ Bais URL : https://mqtt-api.tved.it/
 
 
 # Libraries
-| Name                                              | Version           |
-| :------------------------------------------------ | :---------------- |
-| CommunityToolkit.Mvvm                             | 8.0.0             |
-| Microsoft.Maui.Dependencies                       | 6.0.547           |
-| Microsoft.Maui.Extensions                         | 6.0.547           |
-| Microsoft.Windows.SDK.BuildTools                  | 10.0.22000.194    |
-| MQTTnet                                           | 3.1.1             |
-| MQTTnet.Extensions.ManagedClient                  | 3.1.1             |
-| Polly                                             | 7.2.3             |
-| sqlite-net-pcl                                    | 1.8.116           |
-| Syncfusion.Maui.Charts                            | 20.3.56           |
-| System.Runtime.InteropServices.NFloat.Internal    | 6.0.1             |
+| Name                             | Version |
+| :------------------------------- | :------ |
+| Blazored.Toast                   | 3.2.2   |
+| MQTTnet                          | 3.1.1   |
+| MQTTnet.Extensions.ManagedClient | 3.1.1   |
+| Radzen.Blazor                    | 4.3.4   |
+| Toolbelt.Blazor.HotKeys          | 13.0.0  |
+| Toolbelt.Blazor.I18nText         | 12.0.0  |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-# App Pages
-
-<img src="/Docs/HomePageApp.png" width="50%"/>
-
-<img src="/Docs/LogPageApp.png" width="50%"/>
-
-<img src="/Docs/ClimatePageApp.png" width="50%"/>
-
-
-
 
 # License
 * Hardware: CC-BY-LA (Creative Commons)
