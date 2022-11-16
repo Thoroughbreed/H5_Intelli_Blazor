@@ -7,7 +7,7 @@ public static class DependencyInjectionScanner
 {
     public static void RegisterDependencies(this WebApplicationBuilder builder)
     {
-        builder.Services.AddByNamespace("IntelliHouse2000.Services");
+        builder.Services.AddByNamespace("IntelliHouse2000.Services", ServiceLifetime.Scoped);
     }
     
     /// <summary>
