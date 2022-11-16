@@ -12,16 +12,19 @@ public class APIService : IAPIService
     private readonly HttpClient _client;
     private readonly HttpContextAccessor _httpContextAccessor;
     
-    public APIService(HttpClient client, HttpContextAccessor httpContextAccessor)
+    public APIService() // HttpClient client, HttpContextAccessor httpContextAccessor
     {
-        _client = client;
-        _httpContextAccessor = httpContextAccessor;
+        // _client = client;
+        // _httpContextAccessor = httpContextAccessor;
+        _client = new HttpClient();
+        _httpContextAccessor = new HttpContextAccessor();
         HttpClientHandler clientHandler = new();
         clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
     }
 
     private async Task<string> InitializeHttpClient()
     {
+        return "";
         var bearerToken = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
         return bearerToken ?? "404";
@@ -31,22 +34,35 @@ public class APIService : IAPIService
     {
         await InitializeHttpClient();
         var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "critical"));
-        return logs ?? new List<LogMessage>{ new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?"}};
+        if (logs != null)
+        {
+            return logs.Take(3).ToList();
+        }
+        return new List<LogMessage>
+            { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };
     }
     
     public async Task<List<LogMessage>> GetSystemLogsAsync()
     {
         await InitializeHttpClient();
         var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "system"));
-        return logs ?? new List<LogMessage>{ new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?"}};
-    }
+        if (logs != null)
+        {
+            return logs.Take(3).ToList();
+        }
+        return new List<LogMessage>
+            { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };    }
     
     public async Task<List<LogMessage>> GetInfoLogsAsync()
     {
         await InitializeHttpClient();
         var logs = await _client.GetFromJsonAsync<List<LogMessage>>(new Uri(Constants.ApiBaseUrl + "info"));
-        return logs ?? new List<LogMessage>{ new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?"}};
-    }
+        if (logs != null)
+        {
+            return logs.Take(3).ToList();
+        }
+        return new List<LogMessage>
+            { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };    }
     
     public async Task<List<APIClimate>> GetKitchenListAsync()
     {
