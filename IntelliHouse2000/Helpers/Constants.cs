@@ -23,4 +23,6 @@ public static class Constants
 
     public const string DatabaseConn =
         "server=192.168.2.20;port=3306;database=IntelliHouse;user=blazor;password=P@ssw0rd";
+    
+    public const string MqttArmedTopic = "home/alarm/arm";
 }
