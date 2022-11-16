@@ -75,6 +75,7 @@ namespace IntelliHouse2000.Pages
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
         public void Dispose() => HotKeysContext.Dispose();
+
         async Task OnChangeKitchen() 
         { 
             APIClimatesKitchen = await APIService.GetKitchenListAsync(GrafTimeKitchen);

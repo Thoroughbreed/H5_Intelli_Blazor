@@ -67,7 +67,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetKitchenListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -81,7 +81,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetBedroomListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -95,7 +95,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
         return logs ?? new List<APIClimate>();
     }
     
