@@ -1,5 +1,6 @@
 using Blazored.Toast.Services;
 using IntelliHouse2000.Models.Climate;
+using IntelliHouse2000.Services.API;
 using Microsoft.AspNetCore.Components;
 using System;
 using Toolbelt.Blazor.HotKeys;
@@ -15,6 +16,9 @@ namespace IntelliHouse2000.Pages
         private HotKeys HotKeys { get; set; }
         [Inject]
         private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
+
+        [Inject]
+        private IAPIService APIService { get; set; }
 
         #region Propertyes And variabels
 
@@ -46,6 +50,21 @@ namespace IntelliHouse2000.Pages
 
             this.HotKeysContext = this.HotKeys.CreateContext()
                 .Add(ModKeys.None, Keys.F8, Toaster);
+
+            #region Get Data Form API
+
+            APIClimateKitchen = await APIService.GetKitchenAsync();
+            APIClimateLivingroom = await APIService.GetlivingroomAsync();
+            APIClimateBedroom = await APIService.GetBedroomAsync();
+            
+
+            APIClimatesKitchen = await APIService.GetKitchenListAsync();
+            APIClimatesLivingroom = await APIService.GetlivingroomListAsync();
+            APIClimatesBedroom = await APIService.GetBedroomListAsync();
+            Airqualities = await APIService.GetAirqualityListAsync();
+
+            #endregion
+
         }
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
