@@ -14,7 +14,7 @@ public class AlarmService : IAlarmService
     
     public Task<bool> SetArmed(ArmedState state)
     {
-        return _mqttService.Publish(Constants.MqttArmedTopic, ((int)state).ToString());
+        return _mqttService.Publish(Constants.MqttArmedTopic, ((int)state).ToString(), false, MqttQualityOfServiceLevel.AtLeastOnce);
     }
 }
 
