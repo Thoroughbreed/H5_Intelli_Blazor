@@ -64,10 +64,10 @@ public class APIService : IAPIService
         return new List<LogMessage>
             { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };    }
     
-    public async Task<List<APIClimate>> GetKitchenListAsync()
+    public async Task<List<APIClimate>> GetKitchenListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + "kitchen"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -78,10 +78,10 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetBedroomListAsync()
+    public async Task<List<APIClimate>> GetBedroomListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + "bedroom"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -92,10 +92,10 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetlivingroomListAsync()
+    public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + "livingroom"));
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:SS")}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -112,4 +112,12 @@ public class APIService : IAPIService
         var result = await _client.GetFromJsonAsync<List<Airquality>>(new Uri(Constants.ApiBaseUrl + "airq"));
         return result ?? new List<Airquality>();
     }
+    public async Task<Airquality> GetAirqualityAsync()
+    {
+        await InitializeHttpClient();
+        var logs = await _client.GetFromJsonAsync<Airquality>(new Uri(Constants.ApiBaseUrl + "airq/1"));
+        return logs ?? new Airquality();
+    }
+
+
 }

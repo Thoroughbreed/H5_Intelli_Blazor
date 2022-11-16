@@ -22,6 +22,11 @@ namespace IntelliHouse2000.Pages
 
         #region Propertyes And variabels
 
+        DateTime GrafTimeKitchen { get; set; } = DateTime.Now;
+        DateTime GrafTimeLivingroom  { get; set; } = DateTime.Now;
+        DateTime GrafTimeBedroom { get; set; } = DateTime.Now;
+        DateTime GrafTimeAirquality { get; set; } = DateTime.Now;
+
         SetClimate SetClimateKitchen { get; set; } = new();
         APIClimate APIClimateKitchen { get; set; } = new();
         List<APIClimate> APIClimatesKitchen { get; set; } = new();
@@ -56,11 +61,12 @@ namespace IntelliHouse2000.Pages
             APIClimateKitchen = await APIService.GetKitchenAsync();
             APIClimateLivingroom = await APIService.GetlivingroomAsync();
             APIClimateBedroom = await APIService.GetBedroomAsync();
+            Airquality = await APIService.GetAirqualityAsync();
             
 
-            APIClimatesKitchen = await APIService.GetKitchenListAsync();
-            APIClimatesLivingroom = await APIService.GetlivingroomListAsync();
-            APIClimatesBedroom = await APIService.GetBedroomListAsync();
+            APIClimatesKitchen = await APIService.GetKitchenListAsync(GrafTimeKitchen);
+            APIClimatesLivingroom = await APIService.GetlivingroomListAsync(GrafTimeLivingroom);
+            APIClimatesBedroom = await APIService.GetBedroomListAsync(GrafTimeBedroom);
             Airqualities = await APIService.GetAirqualityListAsync();
 
             #endregion
@@ -68,9 +74,30 @@ namespace IntelliHouse2000.Pages
         }
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
-
         public void Dispose() => HotKeysContext.Dispose();
-
+        async Task OnChangeKitchen(DateTime? value) 
+        { 
+            APIClimatesKitchen = await APIService.GetKitchenListAsync(GrafTimeKitchen);
+            await InvokeAsync(() => StateHasChanged());
+        }
+        async Task OnChangeLivingroom(DateTime? value)
+        {
+            value = GrafTimeLivingroom;
+            APIClimatesLivingroom = await APIService.GetlivingroomListAsync(GrafTimeLivingroom);
+            await InvokeAsync(() => StateHasChanged());
+        }
+        async Task OnChangeBedroom(DateTime? value)
+        {
+            value = GrafTimeBedroom;
+            APIClimatesBedroom = await APIService.GetBedroomListAsync(GrafTimeBedroom);
+            await InvokeAsync(() => StateHasChanged());
+        }
+        async Task OnChangeAirquality(DateTime? value)
+        {
+            value = GrafTimeAirquality;
+            Airqualities = await APIService.GetAirqualityListAsync();
+            await InvokeAsync(() => StateHasChanged());
+        } 
 
         // async void SetHumidAsync() => await // service
         // async void SetTempAsync() => await // service
