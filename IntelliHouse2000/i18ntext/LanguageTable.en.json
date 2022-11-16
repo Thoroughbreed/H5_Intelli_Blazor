@@ -13,7 +13,16 @@
   "Humid": "Humidity",
   "Temp": "Tempretur",
   "Airquality": "Airquality",
+  "ToasterError": "Error",
+  "ToasterSetHumidError": "Could NOT set the Humidity too: ",
+  "ToasterSetTempError": "Could NOT set the  too: ",
+  "ToasterSucces": "Succes",
+  "ToasterSetHumidSucces": "Successfully set the Humidity too: ",
+  "ToasterSetTempSucces": "Successfully set the tempreture too: ",
+
 
   "Log": "Log"
+
+
 
 }

@@ -12,7 +12,7 @@ public class APIService : IAPIService
     private readonly HttpClient _client;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly string _apiBaseUrl;
-    
+
     public APIService(IConfiguration config, HttpClient client, IHttpContextAccessor httpContextAccessor)
     {
         _apiBaseUrl = config["ApiBaseUrl"];
@@ -64,10 +64,11 @@ public class APIService : IAPIService
         return new List<LogMessage>
             { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };    }
     
-    public async Task<List<APIClimate>> GetKitchenListAsync()
+    public async Task<List<APIClimate>> GetKitchenListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + "kitchen"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"kitchen?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -78,10 +79,11 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetBedroomListAsync()
+    public async Task<List<APIClimate>> GetBedroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + "bedroom"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss"): null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"bedroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -92,10 +94,11 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetlivingroomListAsync()
+    public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + "livingroom"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"livingroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -112,4 +115,12 @@ public class APIService : IAPIService
         var result = await _client.GetFromJsonAsync<List<Airquality>>(new Uri(_apiBaseUrl + "airq"));
         return result ?? new List<Airquality>();
     }
+    public async Task<Airquality> GetAirqualityAsync()
+    {
+        await InitializeHttpClient();
+        var logs = await _client.GetFromJsonAsync<Airquality>(new Uri(_apiBaseUrl + "airq/1"));
+        return logs ?? new Airquality();
+    }
+
+
 }
