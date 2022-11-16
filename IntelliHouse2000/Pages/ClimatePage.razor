@@ -33,7 +33,7 @@
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker  TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change=@(args => OnChangeKitchen(args)) /> 
+                                <RadzenDatePicker @bind-Value="GrafTimeKitchen" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeKitchen") /> 
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -77,7 +77,7 @@
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change=@(args => OnChangeLivingroom(args)) />
+                                <RadzenDatePicker @bind-Value="GrafTimeLivingroom" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeLivingroom" ) />
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -121,7 +121,7 @@
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change=@(args => OnChangeBedroom(args)) />
+                                <RadzenDatePicker @bind-Value="GrafTimeBedroom" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeBedroom" ) />
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -156,7 +156,7 @@
             <div class="col-2">
                 <RadzenCard>
                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                    <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change=@(args => OnChangeAirquality(args)) />
+                    <RadzenDatePicker @bind-Value="GrafTimeAirquality" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeAirquality" ) />
                 </RadzenCard>
             </div>
             <div class="col-7">

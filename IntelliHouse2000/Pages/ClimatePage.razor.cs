@@ -75,26 +75,23 @@ namespace IntelliHouse2000.Pages
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
         public void Dispose() => HotKeysContext.Dispose();
-        async Task OnChangeKitchen(DateTime? value) 
+        async Task OnChangeKitchen() 
         { 
             APIClimatesKitchen = await APIService.GetKitchenListAsync(GrafTimeKitchen);
             await InvokeAsync(() => StateHasChanged());
         }
-        async Task OnChangeLivingroom(DateTime? value)
+        async Task OnChangeLivingroom()
         {
-            value = GrafTimeLivingroom;
             APIClimatesLivingroom = await APIService.GetlivingroomListAsync(GrafTimeLivingroom);
             await InvokeAsync(() => StateHasChanged());
         }
-        async Task OnChangeBedroom(DateTime? value)
+        async Task OnChangeBedroom()
         {
-            value = GrafTimeBedroom;
             APIClimatesBedroom = await APIService.GetBedroomListAsync(GrafTimeBedroom);
             await InvokeAsync(() => StateHasChanged());
         }
-        async Task OnChangeAirquality(DateTime? value)
+        async Task OnChangeAirquality()
         {
-            value = GrafTimeAirquality;
             Airqualities = await APIService.GetAirqualityListAsync();
             await InvokeAsync(() => StateHasChanged());
         } 
