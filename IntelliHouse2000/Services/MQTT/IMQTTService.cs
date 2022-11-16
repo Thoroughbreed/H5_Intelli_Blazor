@@ -15,7 +15,7 @@ public interface IMQTTService
     public Task<bool> Reconnect();
     public Task StartAsync();
     
-    Task<bool> Publish(string v, MqttApplicationMessage message);
+    Task<bool> Publish(MqttApplicationMessage message);
     Task<bool> Publish(string topic, byte[] payload, bool retain = false, MqttQualityOfServiceLevel qos = MqttQualityOfServiceLevel.AtMostOnce);
     Task<bool> Publish(string topic, string payload, bool retain = false, MqttQualityOfServiceLevel qos = MqttQualityOfServiceLevel.AtMostOnce);
 }
