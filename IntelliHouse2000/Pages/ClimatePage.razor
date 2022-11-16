@@ -17,7 +17,7 @@
 
                                 <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateKitchen.SetHumid" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetHumidKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
@@ -26,14 +26,14 @@
 
                                 <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateKitchen.SetTemp" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetTempKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                         </div>
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker @bind-Value="GrafTimeKitchen" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeKitchen") /> 
+                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" Change=@(args => OnChangeKitchen(args)) DateFormat="MM/dd/yyyy HH:mm" Class="w-100" />
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -61,7 +61,7 @@
 
                                 <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateLivingroom.SetHumid" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetHumidLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
@@ -70,14 +70,14 @@
 
                                 <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateLivingroom.SetTemp" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetTempLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                         </div>
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker @bind-Value="GrafTimeLivingroom" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeLivingroom" ) />
+                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" Change=@(args => OnChangeLivingroom(args)) DateFormat="MM/dd/yyyy HH:mm" Class="w-100" />
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -105,7 +105,7 @@
 
                                 <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateBedroom.SetHumid" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetHumidBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
@@ -114,14 +114,14 @@
 
                                 <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
                                 <RadzenNumeric @bind-Value="SetClimateBedroom.SetTemp" TValue="int" />
-                                <RadzenButton Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <RadzenButton onclick="@SetTempBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
 
                             </RadzenCard>
                         </div>
                         <div class="col-2">
                             <RadzenCard>
                                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                                <RadzenDatePicker @bind-Value="GrafTimeBedroom" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeBedroom" ) />
+                                <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" Change=@(args => OnChangeBedroom(args)) DateFormat="MM/dd/yyyy HH:mm" Class="w-100" />
                             </RadzenCard>
                         </div>
                         <div class="col-7">
@@ -156,7 +156,7 @@
             <div class="col-2">
                 <RadzenCard>
                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3" Text="@languageTable["DatePicker"]" />
-                    <RadzenDatePicker @bind-Value="GrafTimeAirquality" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" DateFormat="yyyy-MM-dd HH:mm" Class="w-100" Change="@OnChangeAirquality" ) />
+                    <RadzenDatePicker TValue="DateTime?" ShowTime="true" ShowSeconds="true" HoursStep="1" MinutesStep="5" SecondsStep="10" Change=@(args => OnChangeAirquality(args)) DateFormat="MM/dd/yyyy HH:mm" Class="w-100" />
                 </RadzenCard>
             </div>
             <div class="col-7">

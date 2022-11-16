@@ -64,10 +64,11 @@ public class APIService : IAPIService
         return new List<LogMessage>
             { new LogMessage { Client = "System", Timestamp = DateTime.Now, Message = "No logs found?" } };    }
     
-    public async Task<List<APIClimate>> GetKitchenListAsync(DateTime timeStamp)
+    public async Task<List<APIClimate>> GetKitchenListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"kitchen?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -78,10 +79,11 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetBedroomListAsync(DateTime timeStamp)
+    public async Task<List<APIClimate>> GetBedroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss"): null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"bedroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
@@ -92,10 +94,11 @@ public class APIService : IAPIService
         return logs ?? new APIClimate();
     }
     
-    public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime timeStamp)
+    public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={timeStamp.ToString("yyyy-MM-dd HH:mm:ss")}"));
+        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(Constants.ApiBaseUrl + $"livingroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
     
