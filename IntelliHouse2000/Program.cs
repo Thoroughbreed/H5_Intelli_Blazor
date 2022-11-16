@@ -1,12 +1,11 @@
 using Blazored.Toast;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Localization;
 using Radzen;
-using System.Reflection.PortableExecutable;
 using IntelliHouse2000.Helpers;
 using IntelliHouse2000.Services.MQTT;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
+
+using Auth0.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +34,18 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.AddSupportedUICultures(supportedCultures);
 });
 
+builder.Services
+    .AddAuth0WebAppAuthentication(options => {
+        options.Domain = builder.Configuration["Auth0:Domain"];
+        options.ClientId = builder.Configuration["Auth0:ClientId"];
+        options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
+        options.Scope = "openid profile email";
+    })
+    .WithAccessToken(options =>
+    {
+        options.Audience = builder.Configuration["Auth0:APIIdentifier"];
+    });
+
 var app = builder.Build();
 
 var mqttService = app.Services.GetService<IMQTTService>();
@@ -48,11 +59,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

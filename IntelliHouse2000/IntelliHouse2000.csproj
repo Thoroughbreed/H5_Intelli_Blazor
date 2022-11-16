@@ -7,7 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.0.4" />
       <PackageReference Include="Blazored.Toast" Version="3.2.2" />
+      <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.2.2" />
+      <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.2.2" />
+      <PackageReference Include="Microsoft.Owin.Security.OpenIdConnect" Version="4.2.2" />
       <PackageReference Include="MQTTnet" Version="3.1.1" />
       <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.1" />
       <PackageReference Include="Radzen.Blazor" Version="4.3.4" />
