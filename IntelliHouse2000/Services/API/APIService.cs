@@ -24,7 +24,7 @@ public class APIService : IAPIService
 
     private async Task<string> InitializeHttpClient()
     {
-        return "";
+        // return "";
         var bearerToken = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
         return bearerToken ?? "404";

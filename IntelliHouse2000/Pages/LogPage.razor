@@ -3,5 +3,58 @@
 
 <PageTitle>Log</PageTitle>
 
-
-
+<div class="text-center container-fluid">
+    <div class="row">
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                @foreach (var logs in CriticalLogs)
+                {
+                    <div class="card border-danger mb-12">
+                      <div class="card-body text-danger">
+                          <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
+                        <p class="card-text">@logs.Message</p>
+                      </div>
+                    </div>
+                }
+            </RadzenCard>
+        </div>
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+@foreach (var logs in InfoLogs)
+                {
+                    <div class="card border-info mb-12">
+                        <div class="card-body">
+                        <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
+                            <p class="card-text">@logs.Message</p>
+                        </div>
+                    </div>
+                }
+            </RadzenCard>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+@foreach (var logs in SystemLogs)
+                {
+                    <div class="card border-success mb-12">
+                        <div class="card-body text-success">
+                            <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
+                            <p class="card-text">@logs.Message</p>
+                        </div>
+                    </div>
+                }
+            </RadzenCard>
+        </div>
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                <div class="card border-warning mb-12">
+                    <div class="card-body">
+                        <div class="card-title"><strong>System</strong> - <em>@DateTime.Now</em></div>
+                        <p class="card-text">No log found ...</p>
+                    </div>
+                </div>
+            </RadzenCard>
+        </div>
+    </div>
+</div>
