@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using IntelliHouse2000.Models.Alarm
 @implements IDisposable
-@attribute [Authorize(Roles = "test")]
+@attribute [Authorize(Roles = "IntelliAdmin, IntelliRead, IntelliWrite")]
+
 
 <PageTitle>@languageTable["Home"]</PageTitle>
 
@@ -10,25 +11,27 @@
     <div class="row">
         <h1>@languageTable["Welcome"]</h1>
     </div>
+    <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+        <div class="row">
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
+                </RadzenCard>
+            </div>
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+                </RadzenCard>
+            </div>
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+                </RadzenCard>
+            </div>
 
-    <div class="row">
-        <div class="col-4">
-            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                <RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
-            </RadzenCard>
         </div>
-        <div class="col-4">
-            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                <RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
-            </RadzenCard>
-        </div>
-        <div class="col-4">
-            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                <RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
-            </RadzenCard>
-        </div>
+    </AuthorizeView>
 
-    </div>
 
 </div>
 

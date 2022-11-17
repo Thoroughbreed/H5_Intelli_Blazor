@@ -1,6 +1,6 @@
 ﻿@page "/Climate"
 @implements IDisposable
-@attribute [Authorize(Roles = "test")]
+@attribute [Authorize(Roles = "IntelliRead, IntelliAdmin, IntelliWrite")]
 
 <PageTitle>@languageTable["Climate"]</PageTitle>
 
@@ -16,18 +16,22 @@
                                 <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
                                 <RadzenLabel Text="@APIClimateKitchen.Humidity.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateKitchen.SetHumid" TValue="int" />
-                                <RadzenButton Click="@SetHumidKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateKitchen.SetHumid" TValue="int" />
+                                    <RadzenButton Click="@SetHumidKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                                 <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
                                 <RadzenLabel Text="@APIClimateKitchen.Temperature.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateKitchen.SetTemp" TValue="int" />
-                                <RadzenButton Click="@SetTempKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateKitchen.SetTemp" TValue="int" />
+                                    <RadzenButton Click="@SetTempKitchenAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                         </div>
@@ -60,18 +64,22 @@
                                 <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
                                 <RadzenLabel Text="@APIClimateLivingroom.Humidity.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateLivingroom.SetHumid" TValue="int" />
-                                <RadzenButton Click="@SetHumidLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateLivingroom.SetHumid" TValue="int" />
+                                    <RadzenButton Click="@SetHumidLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                                 <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
                                 <RadzenLabel Text="@APIClimateLivingroom.Temperature.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateLivingroom.SetTemp" TValue="int" />
-                                <RadzenButton Click="@SetTempLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateLivingroom.SetTemp" TValue="int" />
+                                    <RadzenButton Click="@SetTempLivingroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                         </div>
@@ -104,18 +112,22 @@
                                 <RadzenLabel Text="@languageTable["SeeHumid"]" /> <br />
                                 <RadzenLabel Text="@APIClimateBedroom.Humidity.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateBedroom.SetHumid" TValue="int" />
-                                <RadzenButton Click="@SetHumidBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetHumid"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateBedroom.SetHumid" TValue="int" />
+                                    <RadzenButton Click="@SetHumidBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
                                 <RadzenLabel Text="@languageTable["SeeTemp"]" /> <br />
                                 <RadzenLabel Text="@APIClimateBedroom.Temperature.ToString()" /><br /><br />
 
-                                <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
-                                <RadzenNumeric @bind-Value="SetClimateBedroom.SetTemp" TValue="int" />
-                                <RadzenButton Click="@SetTempBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+                                    <RadzenLabel Text="@languageTable["SetTemp"]" /><br />
+                                    <RadzenNumeric @bind-Value="SetClimateBedroom.SetTemp" TValue="int" />
+                                    <RadzenButton Click="@SetTempBedroomAsync" Icon="add_circle_outline" style="margin: 5px" Text="@languageTable["Submit"]" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                                </AuthorizeView>
 
                             </RadzenCard>
                         </div>
