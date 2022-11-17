@@ -16,10 +16,10 @@ namespace IntelliHouse2000.Pages
         [Inject] private IAPIService Service { get; set; }
         [Inject] private IDBService DBService { get; set; }
         [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; }
-        public List<LogMessage> CriticalLogs { get; set; } = new();
-        public List<LogMessage> SystemLogs { get; set; } = new();
-        public List<LogMessage> InfoLogs { get; set; } = new();
-        public List<LogMessageDTO> UserLogs { get; set; } = new();
+        public IEnumerable<LogMessage> CriticalLogs { get; set; }
+        public IEnumerable<LogMessage> SystemLogs { get; set; }
+        public IEnumerable<LogMessage> InfoLogs { get; set; } 
+        public IEnumerable<LogMessageDTO> UserLogs { get; set; }
 
 
         HotKeysContext? HotKeysContext;
