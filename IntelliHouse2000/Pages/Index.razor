@@ -3,8 +3,39 @@
 @implements IDisposable
 @attribute [Authorize(Roles = "test")]
 
-<PageTitle>Home</PageTitle>
+<PageTitle>@languageTable["Home"]</PageTitle>
 
-<RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
-<RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
-<RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+<div class="text-center">
+
+    <div class="row">
+        <h1>@languageTable["Welcome"]</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                <RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
+            </RadzenCard>
+        </div>
+        <div class="col-4">
+            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                <RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+            </RadzenCard>
+        </div>
+        <div class="col-4">
+            <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                <RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+            </RadzenCard>
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
