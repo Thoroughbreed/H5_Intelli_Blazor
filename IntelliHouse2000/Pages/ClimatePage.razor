@@ -1,5 +1,6 @@
 ﻿@page "/Climate"
 @implements IDisposable
+@attribute [Authorize(Roles = "test")]
 
 <PageTitle>@languageTable["Climate"]</PageTitle>
 
