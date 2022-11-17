@@ -1,8 +1,8 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 <AuthorizeView>
     <Authorized>
-        @languageTable["Hello"], @context.User.Identity?.Name!
-        <a class="btn btn-outline-info float-end m-2" href="Account/Logout">Log out</a>
+            <span class="align-middle m-2">@languageTable["Hello"], @context.User.Identity?.Name!</span>
+            <a class="btn btn-outline-info float-end m-2" href="Account/Logout">Log out</a>
     </Authorized>
     <NotAuthorized>
         <a class="btn btn-outline-success float-end m-2" href="Account/Login?redirectUri=/">Log in</a>
