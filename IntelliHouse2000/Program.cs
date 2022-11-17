@@ -6,6 +6,7 @@ using IntelliHouse2000.Services.MQTT;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,23 @@ builder.Services
     {
         options.Audience = builder.Configuration["Auth0:APIIdentifier"];
     });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.IsEssential = true;
+    });
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.IsEssential = true;
+});
+
+
 
 var app = builder.Build();
 
