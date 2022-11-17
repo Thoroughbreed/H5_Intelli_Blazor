@@ -37,8 +37,8 @@ namespace IntelliHouse2000.Pages
             CriticalLogs = await Service.GetCriticalLogsAsync();
             SystemLogs = await Service.GetSystemLogsAsync();
             InfoLogs = await Service.GetInfoLogsAsync();
-            UserLogs = await DBService.GetLogs(3, LogType.user).ToListAsync();
-            await DBService.WriteLogAsync(new LogMessage
+            UserLogs = DBService.GetLogs(3, LogType.critical);
+            var debug = await DBService.WriteLogAsync(new LogMessage
             {
                 Client = "Test",
                 Message = "Test message",

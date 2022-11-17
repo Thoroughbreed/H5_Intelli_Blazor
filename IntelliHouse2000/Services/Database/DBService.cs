@@ -10,19 +10,27 @@ public class DBService : IDBService
     {
         _context = context;
     }
-    public IQueryable<LogMessage> GetLogs(int amount, LogType type)
+    public List<LogMessage> GetLogs(int amount, LogType type)
     {
+        var debug1 = type.ToString();
         var logs = _context.Messages.Where(l => l.Topic.Contains(type.ToString()))
                                                         .OrderByDescending(l => l.Id)
-                                                        .Take(amount);
+                                                        .Take(amount).ToList();
         return logs;
     }
 
     public async Task<bool> WriteLogAsync(LogMessage log)
     {
+        LogMessageDTO logDTO = new LogMessageDTO
+        {
+            
+            logDTO.Retain = 0;
+            logDTO.QoS = 0;
+            
+        }
         try
         {
-            await _context.Messages.AddAsync(log);
+            await _context.Messages.AddAsync(logDTO);
             return true;
         }
         catch (Exception)
