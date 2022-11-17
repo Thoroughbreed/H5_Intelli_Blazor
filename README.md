@@ -32,7 +32,7 @@
 Build a Blazor server (or webassembly) web application for the [Intelligent House](https://github.com/Thoroughbreed/H5_Embedded_Project)
 
 - Home page for alarm
-- Page for log with 3 tabs for 3 log-levels <!-- NH_TODO: Update when Jan merges log page into develop -->
+- Page for log with 4 log-levels
 - Page for climate with 3 tabs for 3 rooms
 
 
@@ -41,7 +41,7 @@ Build a Blazor server (or webassembly) web application for the [Intelligent Hous
 
 # Requirements
 - [x] Henter data fra ~~Thingspeak~~ og præsenterer dem i grafer
-  - [x] Vi henter data fra en database da vi ikke bruger Thingspeak
+  - [x] Vi henter data fra vores database da vi ikke bruger Thingspeak
 - [x] Der skal være mulighed for at bestemme start og sluttidspunkter for data
 - [x] Der skal være mulighed for at kunne styre en servo eller lignende via MQTT (MQTT.NET)
 
@@ -83,30 +83,36 @@ All of this is then displayed on the App for the **IntelliHouse2000**, **Intelli
 
 ![Folder structure](/Docs/FolderStructure.png)
 
-We use MVVM, Services, Repositories and Helpers 
-<!-- NH_TODO: Change -->
+We use Helpers, Models, Services, i18ntext and Pages
 
-And uses FBF (Folder By Feature)
+And use FBF (Folder By Feature)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 # API Calls
-<!-- NH_TODO: Create proper api documentaiton -->
+<!-- NH_TODO: Update swagger for better API documentation -->
 
 Base URL : https://mqtt-api.tved.it/
 
-- /
-- /all
-- /info
-- /debug
-- /system
-- /critical
-- /kitchen
-- /bedroom
-- /livingroom
-- /airq
+| Method | Uri           | Description                                                            | Parameters     | Parameter formats                    |
+| :----- | :------------ | :--------------------------------------------------------------------- | :------------- | :----------------------------------- |
+| GET    | /             | Smoke test                                                             |                |                                      |
+| GET    | /all          | Get last 50 logs                                                       |                |                                      |
+| GET    | /info         | Get last 50 logs with log level info                                   |                |                                      |
+| GET    | /debug        | Get last 50 logs with log level debug                                  |                |                                      |
+| GET    | /system       | Get last 50 logs with log level system                                 |                |                                      |
+| GET    | /critical     | Get last 50 logs with log level critical                               |                |                                      |
+| GET    | /kitchen      | Get all temperature and humidity readings from the kitchen since ts    | ts (timestamp) | Datetime format: yyyy-MM-dd HH:mm:ss |
+| GET    | /kitchen/1    | Get last temperature and humidity reading from the kitchen             |                |                                      |
+| GET    | /bedroom      | Get all temperature and humidity readings from the bedroom since ts    | ts (timestamp) | Datetime format: yyyy-MM-dd HH:mm:ss |
+| GET    | /bedroom/1    | Get last temperature and humidity reading from the bedroom             |                |                                      |
+| GET    | /livingroom   | Get all temperature and humidity readings from the livingroom since ts | ts (timestamp) | Datetime format: yyyy-MM-dd HH:mm:ss |
+| GET    | /livingroom/1 | Get last temperature and humidity reading from the livingroom          |                |                                      |
+| GET    | /airq         | Get all air quality readings since ts                                  | ts (timestamp) | Datetime format: yyyy-MM-dd HH:mm:ss |
+| GET    | /airq/1       | Get last air quality reading                                           |                |                                      |
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
