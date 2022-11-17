@@ -1,9 +1,12 @@
-﻿using System.Text;
+﻿using System.Security.Claims;
+using System.Text;
 using Blazored.Toast.Services;
 using IntelliHouse2000.Helpers;
+using IntelliHouse2000.Models;
 using IntelliHouse2000.Models.Alarm;
 using Microsoft.AspNetCore.Components;
 using IntelliHouse2000.Services.Alarm;
+using IntelliHouse2000.Services.Database;
 using IntelliHouse2000.Services.MQTT;
 using MQTTnet;
 
@@ -19,6 +22,8 @@ namespace IntelliHouse2000.Pages
         private IToastService ToastService { get; set; }
         [Inject]
         private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
+        [Inject] private IDBService DBService { get; set; }
+        [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; }
 
 
         I18nText.LanguageTable languageTable = new I18nText.LanguageTable();
@@ -29,6 +34,7 @@ namespace IntelliHouse2000.Pages
             await MQTTService.Subscribe(Constants.MqttArmedTopic);
             await MQTTService.Subscribe(Constants.MqttCriticalAlarmLogs);
             MQTTService.MessageReceived += OnMQTTMessage;
+            await LogUserLoginAsync();
         }
         private async void OnMQTTMessage(object? sender, MqttApplicationMessageReceivedEventArgs e)
         {
@@ -68,6 +74,21 @@ namespace IntelliHouse2000.Pages
         {
             await MQTTService.Unsubscribe(Constants.MqttArmedTopic);
             await MQTTService.Unsubscribe(Constants.MqttCriticalAlarmLogs);
+        }
+
+        private async Task LogUserLoginAsync()
+        {
+            if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                var role = HttpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault();
+                var debug = await DBService.WriteLogAsync(new LogMessage
+                {
+                    Client = HttpContextAccessor.HttpContext.User.Identity.Name,
+                    Message = $"User logged in with role {role.Value}",
+                    Timestamp = DateTime.Now,
+                    Topic = "home/log/user"
+                });
+            }
         }
     }
 }
