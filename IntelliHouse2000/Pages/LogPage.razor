@@ -1,5 +1,6 @@
 ﻿@page "/Log"
 @using IntelliHouse2000.Helpers
+@using IntelliHouse2000.Models;
 @implements IDisposable
 @attribute [Authorize(Roles = "IntelliRead, IntelliAdmin, IntelliWrite")]
 
@@ -9,61 +10,97 @@
     <div class="row">
         <div class="col">
             <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-secondary">Critical Logs</RadzenText>
-                @foreach (var logs in CriticalLogs)
-                {
-                    <div class="card border-danger mb-12">
-                        <div class="card-body text-danger">
-                            <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
-                            <p class="card-text">@logs.Message</p>
-                        </div>
-                    </div>
-                }
-            </RadzenCard>
-        </div>
-        <div class="col">
-            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-secondary">Info Logs</RadzenText>
-                @foreach (var logs in InfoLogs)
-                {
-                    <div class="card border-info mb-12">
-                        <div class="card-body">
-                            <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
-                            <p class="card-text">@logs.Message</p>
-                        </div>
-                    </div>
-                }
-            </RadzenCard>
-        </div>
-    </div>
-    <AuthorizeView Roles="IntelliAdmin">
-        <div class="row">
-            <div class="col">
-                <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                    <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-secondary">System Logs</RadzenText>
-                    @foreach (var logs in SystemLogs)
-                    {
-                        <div class="card border-success mb-12">
-                            <div class="card-body text-success">
-                                <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
-                                <p class="card-text">@logs.Message</p>
-                            </div>
-                        </div>
-                    }
+                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-black">Critical Logs</RadzenText>
+                <RadzenDataList WrapItems="true" AllowPaging="true" Data="@CriticalLogs" TItem="LogMessage" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+                    <Template Context="CriticalLogs">
+                        <RadzenCard class="rz-border-color-danger" Style="width: 100%; padding: 0; overflow: hidden;">
+                            <div class="container">
+                                <div class="row" style="margin-left: calc(var(--bs-gutter-x) * -1); margin-right: calc(var(--bs-gutter-x) * -1)">
+                                    <div class="col-lg-4 p-3 product-title">
+                                        <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-danger">@(CriticalLogs.Client)</RadzenText>
+                                            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H5" Class="rz-color-danger">@(CriticalLogs.Timestamp)</RadzenText>
+                                        </div>
+                                        <div class="col-lg-8 p-3">
+                                            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H6" class="mb-0">Message:</RadzenText>
+                                            <RadzenText TextStyle="TextStyle.Body2" class="mb-sm-2 mb-lg-0 rz-color-danger">@(CriticalLogs.Message)</RadzenText>
+                                        </div>
+                                    </div>
+                                </div>
+                            </RadzenCard>
+                        </Template>
+                    </RadzenDataList>
                 </RadzenCard>
             </div>
             <div class="col">
                 <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                    <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-secondary">User Logs</RadzenText>
-                    @foreach (var logs in UserLogs)
-                    {
-                        <div class="card border-warning mb-12">
-                            <div class="card-body">
-                                <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
-                                <p class="card-text">@logs.Message</p>
-                            </div>
-                        </div>
-                    }
+                    <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-black">Info Logs</RadzenText>
+                    <RadzenDataList WrapItems="true" AllowPaging="true" Data="@InfoLogs" TItem="LogMessage" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+                        <Template Context="InfoLogs">
+                            <RadzenCard class="rz-border-color-info" Style="width: 100%; padding: 0; overflow: hidden;">
+                                <div class="container">
+                                    <div class="row" style="margin-left: calc(var(--bs-gutter-x) * -1); margin-right: calc(var(--bs-gutter-x) * -1)">
+                                        <div class="col-lg-4 p-3 product-title">
+                                            <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-info">@(InfoLogs.Client)</RadzenText>
+                                            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H5" Class="rz-color-info">@(InfoLogs.Timestamp)</RadzenText>
+                                        </div>
+                                        <div class="col-lg-8 p-3">
+                                            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H6" class="mb-0">Message:</RadzenText>
+                                            <RadzenText TextStyle="TextStyle.Body2" class="mb-sm-2 mb-lg-0 rz-color-info">@(InfoLogs.Message)</RadzenText>
+                                        </div>
+                                    </div>
+                                </div>
+                            </RadzenCard>
+                        </Template>
+                    </RadzenDataList>
+                </RadzenCard>
+            </div>
+        </div>
+        <AuthorizeView Roles="IntelliAdmin">
+            <div class="row">
+                <div class="col">
+                    <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                        <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-black">System Logs</RadzenText>
+                        <RadzenDataList WrapItems="true" AllowPaging="true" Data="@SystemLogs" TItem="LogMessage" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+                            <Template Context="SystemLogs">
+                                <RadzenCard class="rz-border-color-success" Style="width: 100%; padding: 0; overflow: hidden;">
+                                    <div class="container">
+                                        <div class="row" style="margin-left: calc(var(--bs-gutter-x) * -1); margin-right: calc(var(--bs-gutter-x) * -1)">
+                                            <div class="col-lg-4 p-3 product-title">
+                                                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-success">@(SystemLogs.Client)</RadzenText>
+                                                <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H5" Class="rz-color-dasuccessnger">@(SystemLogs.Timestamp)</RadzenText>
+                                            </div>
+                                            <div class="col-lg-8 p-3">
+                                                <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H6" class="mb-0">Message:</RadzenText>
+                                                <RadzenText TextStyle="TextStyle.Body2" class="mb-sm-2 mb-lg-0 rz-color-success">@(SystemLogs.Message)</RadzenText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </RadzenCard>
+                            </Template>
+                        </RadzenDataList>
+                </RadzenCard>
+            </div>
+            <div class="col">
+                <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                    <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-black">User Logs</RadzenText>
+                        <RadzenDataList WrapItems="true" AllowPaging="true" Data="@UserLogs" TItem="LogMessageDTO" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+                            <Template Context="UserLogs">
+                                <RadzenCard class="rz-border-color-series-1" Style="width: 100%; padding: 0; overflow: hidden;">
+                                    <div class="container">
+                                        <div class="row" style="margin-left: calc(var(--bs-gutter-x) * -1); margin-right: calc(var(--bs-gutter-x) * -1)">
+                                            <div class="col-lg-4 p-3 product-title">
+                                                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H5" Class="rz-color-series-1">@(UserLogs.Client)</RadzenText>
+                                                <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H5" Class="rz-color-series-1">@(UserLogs.Timestamp)</RadzenText>
+                                            </div>
+                                            <div class="col-lg-8 p-3">
+                                                <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.H6" class="mb-0">Message:</RadzenText>
+                                                <RadzenText TextStyle="TextStyle.Body2" class="mb-sm-2 mb-lg-0 rz-color-series-1">@(UserLogs.Message)</RadzenText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </RadzenCard>
+                            </Template>
+                        </RadzenDataList>
                 </RadzenCard>
             </div>
         </div>
