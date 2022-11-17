@@ -99,10 +99,10 @@ namespace IntelliHouse2000.Pages
             if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
             {
                 var role = HttpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault();
-                var debug = await DBService.WriteLogAsync(new LogMessage
+                await DBService.WriteLogAsync(new LogMessage
                 {
                     Client = HttpContextAccessor.HttpContext.User.Identity.Name,
-                    Message = $"User logged in with role {role.Value}",
+                    Message = $"User logged in with role {role.Value} from {HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4()}",
                     Timestamp = DateTime.Now,
                     Topic = "home/log/user"
                 });
