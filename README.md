@@ -50,8 +50,8 @@ Build a Blazor server (or webassembly) web application for the [Intelligent Hous
   - [x] Vi bruger ikke thingspeak
 
 ## Optional Requirements
-- [ ] Der laves sikkerhed på Blazor applikationen med Auth0 eller egen Duende Authorizationserver.
-  - [ ] Kun authentikerede brugere med Read permission må kunne hente data fra WebApi.
+- [x] Der laves sikkerhed på Blazor applikationen med Auth0 eller egen Duende Authorizationserver.
+  - [x] Kun authentikerede brugere med Read permission må kunne hente data fra WebApi.
   - [ ] Brugere med Write permission skal også kunne slette gamle data i WebApi
 
 <p align="right">(<a href="#top">back to top</a>)</p>
