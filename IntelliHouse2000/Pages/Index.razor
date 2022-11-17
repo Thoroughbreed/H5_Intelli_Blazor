@@ -15,17 +15,17 @@
         <div class="row">
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Icon="notifications_off" Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
                 </RadzenCard>
             </div>
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+                    <RadzenButton Icon="circle_notifications" Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
                 </RadzenCard>
             </div>
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger"></RadzenButton>
+                    <RadzenButton Icon="notification_important" Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
                 </RadzenCard>
             </div>
 
