@@ -36,13 +36,6 @@ namespace IntelliHouse2000.Pages
             SystemLogs = await Service.GetSystemLogsAsync();
             InfoLogs = await Service.GetInfoLogsAsync();
             UserLogs = DBService.GetLogs(3, LogType.user);
-            var debug = DBService.WriteLogAsync(new LogMessage
-            {
-                Client = HttpContextAccessor.HttpContext.User.Identity.Name,
-                Message = "User logged in",
-                Timestamp = DateTime.Now,
-                Topic = "home/log/user"
-            });
         }
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
