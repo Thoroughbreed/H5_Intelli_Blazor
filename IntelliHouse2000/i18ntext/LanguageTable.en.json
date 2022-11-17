@@ -1,7 +1,12 @@
 {
   "Home": "Home",
   "Welcome": "Welcome!",
+  "Hello": "Hello",
 
+  "AlarmArm": "Fully arm",
+  "AlarmPart": "Partially arm",
+  "AlarmDis": "Disarm",
+  
   "Climate": "Climate",
   "SeeHumid": "The humidity in this room is: ",
   "SeeTemp": "The tempreture in this room is: ",

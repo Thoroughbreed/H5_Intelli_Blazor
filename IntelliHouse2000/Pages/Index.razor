@@ -15,17 +15,17 @@
         <div class="row">
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Icon="notifications_off" Text="Disarm" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                    <RadzenButton Icon="notifications_off" Text="@languageTable["AlarmDis"]" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
                 </RadzenCard>
             </div>
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Icon="circle_notifications" Text="Partially Arm" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
+                    <RadzenButton Icon="circle_notifications" Text="@languageTable["AlarmPart"]" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
                 </RadzenCard>
             </div>
             <div class="col-4">
                 <RadzenCard Class="rz-shadow-10" style="margin: 15px">
-                    <RadzenButton Icon="notification_important" Text="Fully Arm" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
+                    <RadzenButton Icon="notification_important" Text="@languageTable["AlarmArm"]" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
                 </RadzenCard>
             </div>
 

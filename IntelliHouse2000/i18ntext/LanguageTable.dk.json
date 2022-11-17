@@ -1,6 +1,11 @@
 {
   "Home": "Hjem",
   "Welcome": "Velkommen!",
+  "Hello": "Hej",
+  
+  "AlarmArm": "Tilkoble fuldt",
+  "AlarmPart": "Tilkoble halvt",
+  "AlarmDis": "Slå fra",
 
   "Climate": "Klima",
   "SeeHumid": "Luftfugtigheden i rummet er: ",
