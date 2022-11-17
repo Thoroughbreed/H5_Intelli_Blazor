@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net.Http.Headers;
 using IntelliHouse2000.Helpers;
 using IntelliHouse2000.Models;
@@ -67,7 +68,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetKitchenListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        string ts = timeStamp.HasValue ? FixTimestamp(timeStamp.Value) : FixTimestamp(DateTime.Now);
         var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"kitchen?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
@@ -82,7 +83,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetBedroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss"): null;
+        string ts = timeStamp.HasValue ? FixTimestamp(timeStamp.Value) : FixTimestamp(DateTime.Now);
         var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"bedroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
@@ -97,7 +98,7 @@ public class APIService : IAPIService
     public async Task<List<APIClimate>> GetlivingroomListAsync(DateTime? timeStamp)
     {
         await InitializeHttpClient();
-        string ts = timeStamp.HasValue ? timeStamp.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+        string ts = timeStamp.HasValue ? FixTimestamp(timeStamp.Value) : FixTimestamp(DateTime.Now);
         var logs = await _client.GetFromJsonAsync<List<APIClimate>>(new Uri(_apiBaseUrl + $"livingroom?ts={ts}"));
         return logs ?? new List<APIClimate>();
     }
@@ -122,5 +123,8 @@ public class APIService : IAPIService
         return logs ?? new Airquality();
     }
 
-
+    private string FixTimestamp(DateTime ts)
+    {
+        return ts.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+    }
 }
