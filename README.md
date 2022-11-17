@@ -14,15 +14,13 @@
 
 - [Case](#case)
 - [Requirements](#requirements)
-	- [Optionel Requirements](##Optionel-Requirements)
+  - [Optional Requirements](#optional-requirements)
 - [Architecture diagram](#architecture-diagram)
 - [Summary and rundown](#summary-and-rundown)
-- [Folder Structure](#Folder-Structure)
-- [API Calls](#API-Calls)
-- [MessageCenter](#MessageCenter)
+- [Folder Structure](#folder-structure)
+- [API Calls](#api-calls)
 - [MQTT Topics](#mqtt-topics)
 - [Libraries](#libraries)
-- [App Pages](#App-Pages)
 - [License](#license)
 - [Contact](#contact)
 </details>
@@ -91,8 +89,8 @@ And use FBF (Folder By Feature)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-# API Calls
-<!-- NH_TODO: Update swagger for better API documentation -->
+# API Endpoints
+**OPS:** Full api documentaiton can be found on [swagger](https://mqtt-api.tved.it/swagger/index.html)
 
 Base URL : https://mqtt-api.tved.it/
 
@@ -132,14 +130,19 @@ Base URL : https://mqtt-api.tved.it/
 
 
 # Libraries
-| Name                             | Version |
-| :------------------------------- | :------ |
-| Blazored.Toast                   | 3.2.2   |
-| MQTTnet                          | 3.1.1   |
-| MQTTnet.Extensions.ManagedClient | 3.1.1   |
-| Radzen.Blazor                    | 4.3.4   |
-| Toolbelt.Blazor.HotKeys          | 13.0.0  |
-| Toolbelt.Blazor.I18nText         | 12.0.0  |
+| Name                                  | Version |
+| :------------------------------------ | :------ |
+| Auth0.AspNetCore.Authentication       | 1.0.4   |
+| Blazored.Toast                        | 3.2.2   |
+| Microsoft.Owin.Host.SystemWeb         | 4.2.2   |
+| Microsoft.Owin.Security.Cookies       | 4.2.2   |
+| Microsoft.Owin.Security.OpenIdConnect | 4.2.2   |
+| MQTTnet                               | 3.1.1   |
+| MQTTnet.Extensions.ManagedClient      | 3.1.1   |
+| MySql.EntityFrameworkCore             | 6.0.7   |
+| Radzen.Blazor                         | 4.3.4   |
+| Toolbelt.Blazor.HotKeys               | 13.0.0  |
+| Toolbelt.Blazor.I18nText              | 12.0.0  |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
