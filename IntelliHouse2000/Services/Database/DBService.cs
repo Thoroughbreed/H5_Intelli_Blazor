@@ -10,7 +10,7 @@ public class DBService : IDBService
     {
         _context = context;
     }
-    public List<LogMessage> GetLogs(int amount, LogType type)
+    public List<LogMessageDTO> GetLogs(int amount, LogType type)
     {
         var debug1 = type.ToString();
         var logs = _context.Messages.Where(l => l.Topic.Contains(type.ToString()))
@@ -23,14 +23,17 @@ public class DBService : IDBService
     {
         LogMessageDTO logDTO = new LogMessageDTO
         {
-            
-            logDTO.Retain = 0;
-            logDTO.QoS = 0;
-            
-        }
+            Client = log.Client,
+            Message = log.Message,
+            QoS = 0,
+            Retain = 0,
+            Timestamp = log.Timestamp,
+            Topic = log.Topic
+        };
         try
         {
-            await _context.Messages.AddAsync(logDTO);
+            _context.Messages.Add(logDTO);
+            await _context.SaveChangesAsync();
             return true;
         }
         catch (Exception)

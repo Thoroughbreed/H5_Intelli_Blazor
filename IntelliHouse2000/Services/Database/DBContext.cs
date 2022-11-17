@@ -5,7 +5,7 @@ namespace IntelliHouse2000.Services.Database;
 
 public class DBContext : DbContext
 {
-    public DbSet<LogMessage> Messages { get; set; }
+    public DbSet<LogMessageDTO> Messages { get; set; }
     private IConfiguration _config;
 
 
