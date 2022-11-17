@@ -12,7 +12,9 @@ public class DBService : IDBService
     }
     public IQueryable<LogMessage> GetLogs(int amount, LogType type)
     {
-        var logs = _context.Messages.Where(l => l.Topic.Contains(type.ToString())).Take(amount);
+        var logs = _context.Messages.Where(l => l.Topic.Contains(type.ToString()))
+                                                        .OrderByDescending(l => l.Id)
+                                                        .Take(amount);
         return logs;
     }
 
