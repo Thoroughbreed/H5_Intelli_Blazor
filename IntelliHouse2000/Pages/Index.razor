@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using IntelliHouse2000.Models.Alarm
 @implements IDisposable
+@attribute [Authorize(Roles = "test")]
 
 <PageTitle>Home</PageTitle>
 
