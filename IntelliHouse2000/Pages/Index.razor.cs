@@ -68,7 +68,25 @@ namespace IntelliHouse2000.Pages
         public async Task SetArmedAsync(ArmedState state)
         {
             bool success = await AlarmService.SetArmed(state);
-            if (!success) ToastService.ShowError("Could not connect to alarm system");
+            var _message = "";
+            switch (success)
+            {
+                case false:
+                    ToastService.ShowError("Could not connect to alarm system");
+                    _message = "User tried to do something, but the alarm system didn't respond in time";
+                    break;
+                case true:
+                    _message = $"Alarm is now {state}";
+                    break;
+            }
+
+            await DBService.WriteLogAsync(new LogMessage
+            {
+                Client = HttpContextAccessor.HttpContext.User.Identity.Name,
+                Message = _message,
+                Timestamp = DateTime.Now,
+                Topic = "home/log/user"
+            });
         }
         public async void Dispose()
         {
