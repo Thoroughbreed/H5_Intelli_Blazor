@@ -41,6 +41,7 @@ builder.Services
         options.ClientId = builder.Configuration["Auth0:ClientId"];
         options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
         options.Scope = "openid profile email";
+        options.SkipCookieMiddleware = true;
     })
     .WithAccessToken(options =>
     {
