@@ -1,4 +1,5 @@
 ﻿@page "/Log"
+@using IntelliHouse2000.Helpers
 @implements IDisposable
 @attribute [Authorize(Roles = "IntelliRead, IntelliAdmin, IntelliWrite")]
 
@@ -34,31 +35,33 @@
         </div>
     </div>
     <AuthorizeView Roles="IntelliAdmin">
-
-        <div class="row">
-            <div class="col">
-                <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                    @foreach (var logs in SystemLogs)
-                    {
-                        <div class="card border-success mb-12">
-                            <div class="card-body text-success">
-                                <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
-                                <p class="card-text">@logs.Message</p>
-                            </div>
-                        </div>
-                    }
-                </RadzenCard>
-            </div>
-            <div class="col">
-                <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
-                    <div class="card border-warning mb-12">
-                        <div class="card-body">
-                            <div class="card-title"><strong>System</strong> - <em>@DateTime.Now</em></div>
-                            <p class="card-text">No log found ...</p>
+    <div class="row">
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                @foreach (var logs in SystemLogs)
+                {
+                    <div class="card border-success mb-12">
+                        <div class="card-body text-success">
+                            <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
+                            <p class="card-text">@logs.Message</p>
                         </div>
                     </div>
-                </RadzenCard>
-            </div>
+                }
+            </RadzenCard>
         </div>
+        <div class="col">
+            <RadzenCard Class="rz-background-color-primary-lighter rz-shadow-8" style="margin: 10px">
+                @foreach (var logs in UserLogs)
+                {
+                    <div class="card border-warning mb-12">
+                        <div class="card-body">
+                            <div class="card-title"><strong>@logs.Client</strong> - <em>@logs.Timestamp</em></div>
+                            <p class="card-text">@logs.Message</p>
+                        </div>
+                    </div>
+                }
+            </RadzenCard>
+        </div>
+    </div>
     </AuthorizeView>
 </div>

@@ -7,10 +7,30 @@
                 </Authorizing>
                 <NotAuthorized>
                     <h1>Sorry</h1>
+                    @foreach (var claim in @context.User.Claims)
+                    {
+                        <p>@claim.Type - @claim.Value</p>
+                    }
+                    @if (context.User.HasClaim(claim => claim.Value == "IntelliAdmin"))
+                    {
+                        <p>Yay!</p>
+                    }
+                    else
+                    {
+                        <p>Nay ...</p>
+                    }
+                    @if (context.User.IsInRole("IntelliAdmin"))
+                    {
+                        <p>Yay!</p>
+                    }
+                    else
+                    {
+                        <p>Nay ...</p>
+                    }
                     <p>You're not authorized to reach this page. You need to log in.</p>
                 </NotAuthorized>
             </AuthorizeRouteView>
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
         </Found>
         <NotFound>
             <PageTitle>Not found</PageTitle>

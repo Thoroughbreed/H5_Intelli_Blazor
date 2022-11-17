@@ -1,9 +1,8 @@
 using Blazored.Toast.Services;
 using Microsoft.AspNetCore.Components;
-using System;
 using IntelliHouse2000.Models;
 using IntelliHouse2000.Services.API;
-using Microsoft.AspNetCore.Identity;
+using IntelliHouse2000.Services.Database;
 using Toolbelt.Blazor.HotKeys;
 
 namespace IntelliHouse2000.Pages
@@ -15,9 +14,12 @@ namespace IntelliHouse2000.Pages
         [Inject] private HotKeys HotKeys { get; set; }
         [Inject] private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
         [Inject] private IAPIService Service { get; set; }
+        [Inject] private IDBService DBService { get; set; }
+        [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; }
         public List<LogMessage> CriticalLogs { get; set; } = new();
         public List<LogMessage> SystemLogs { get; set; } = new();
         public List<LogMessage> InfoLogs { get; set; } = new();
+        public List<LogMessageDTO> UserLogs { get; set; } = new();
 
 
         HotKeysContext? HotKeysContext;
@@ -33,6 +35,7 @@ namespace IntelliHouse2000.Pages
             CriticalLogs = await Service.GetCriticalLogsAsync();
             SystemLogs = await Service.GetSystemLogsAsync();
             InfoLogs = await Service.GetInfoLogsAsync();
+            UserLogs = DBService.GetLogs(3, LogType.user);
         }
 
         void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
