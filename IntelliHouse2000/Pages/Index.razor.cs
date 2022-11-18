@@ -15,19 +15,18 @@ namespace IntelliHouse2000.Pages
 {
     public partial class Index
     {
-        [Inject]
-        public HotKeys HotKeys { get; set; }
-        [Inject]
-        private IMQTTService MQTTService { get; set; }
-        [Inject]
-        private IAlarmService AlarmService { get; set; }
-        [Inject]
-        private IToastService ToastService { get; set; }
-        [Inject]
-        private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
+#pragma warning disable CS8618
+        [Inject] public HotKeys HotKeys { get; set; }
+        [Inject] private IMQTTService MQTTService { get; set; }
+        [Inject] private IAlarmService AlarmService { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
+        // ReSharper disable once InconsistentNaming
+        [Inject] private Toolbelt.Blazor.I18nText.I18nText I18nText { get; set; }
         [Inject] private IDBService DBService { get; set; }
         [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; }
+#pragma warning restore CS8618
 
+        
         HotKeysContext? HotKeysContext;
         I18nText.LanguageTable languageTable = new I18nText.LanguageTable();
 
@@ -77,22 +76,22 @@ namespace IntelliHouse2000.Pages
         public async Task SetArmedAsync(ArmedState state)
         {
             bool success = await AlarmService.SetArmed(state);
-            var _message = "";
+            var message = "";
             switch (success)
             {
                 case false:
                     ToastService.ShowError("Could not connect to alarm system");
-                    _message = "User tried to do something, but the alarm system didn't respond in time";
+                    message = "User tried to do something, but the alarm system didn't respond in time";
                     break;
                 case true:
-                    _message = $"Alarm is now {state}";
+                    message = $"Alarm is now {state}";
                     break;
             }
 
             await DBService.WriteLogAsync(new LogMessage
             {
                 Client = HttpContextAccessor.HttpContext.User.Identity.Name,
-                Message = _message,
+                Message = message,
                 Timestamp = DateTime.Now,
                 Topic = "home/log/user"
             });
@@ -105,7 +104,9 @@ namespace IntelliHouse2000.Pages
 
         private async Task LogUserLoginAsync()
         {
-            if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+#pragma warning disable CS8601
+#pragma warning disable CS8602
+            if (HttpContextAccessor.HttpContext.User.Identity!.IsAuthenticated)
             {
                 var role = HttpContextAccessor.HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault();
                 await DBService.WriteLogAsync(new LogMessage
@@ -116,6 +117,8 @@ namespace IntelliHouse2000.Pages
                     Topic = "home/log/user"
                 });
             }
+#pragma warning restore CS8601
+#pragma warning restore CS8602
         }
     }
 }
