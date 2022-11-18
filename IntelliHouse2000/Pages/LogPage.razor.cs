@@ -30,15 +30,15 @@ namespace IntelliHouse2000.Pages
             languageTable = await I18nText.GetTextTableAsync<I18nText.LanguageTable>(this);
 
             this.HotKeysContext = this.HotKeys.CreateContext()
-                .Add(ModKeys.None, Keys.F8, Toaster);
-            
+                .Add(ModKeys.Ctrl, Keys.H, Toaster);
+
             CriticalLogs = await Service.GetCriticalLogsAsync();
             SystemLogs = await Service.GetSystemLogsAsync();
             InfoLogs = await Service.GetInfoLogsAsync();
             UserLogs = DBService.GetLogs(3, LogType.user);
         }
 
-        void Toaster() => ToastService.ShowInfo("Congtats ypu just used a Hotkey: F8", "HotKey");
+        void Toaster() => ToastService.ShowInfo($"{languageTable["ToasterHelp"]}", $"{languageTable["Help"]}");
 
         public void Dispose() => HotKeysContext.Dispose();
     }

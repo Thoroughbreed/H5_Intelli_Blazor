@@ -9,11 +9,14 @@ using IntelliHouse2000.Services.Alarm;
 using IntelliHouse2000.Services.Database;
 using IntelliHouse2000.Services.MQTT;
 using MQTTnet;
+using Toolbelt.Blazor.HotKeys;
 
 namespace IntelliHouse2000.Pages
 {
     public partial class Index
     {
+        [Inject]
+        public HotKeys HotKeys { get; set; }
         [Inject]
         private IMQTTService MQTTService { get; set; }
         [Inject]
@@ -25,17 +28,23 @@ namespace IntelliHouse2000.Pages
         [Inject] private IDBService DBService { get; set; }
         [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; }
 
-
+        HotKeysContext? HotKeysContext;
         I18nText.LanguageTable languageTable = new I18nText.LanguageTable();
 
         protected override async Task OnInitializedAsync()
         {
             languageTable = await I18nText.GetTextTableAsync<I18nText.LanguageTable>(this);
+            this.HotKeysContext = this.HotKeys.CreateContext()
+                .Add(ModKeys.Ctrl, Keys.H, Toaster);
+
             await MQTTService.Subscribe(Constants.MqttArmedTopic);
             await MQTTService.Subscribe(Constants.MqttCriticalAlarmLogs);
             MQTTService.MessageReceived += OnMQTTMessage;
             await LogUserLoginAsync();
         }
+
+        void Toaster() => ToastService.ShowInfo($"{languageTable["ToasterHelp"]}", $"{languageTable["Help"]}");
+
         private async void OnMQTTMessage(object? sender, MqttApplicationMessageReceivedEventArgs e)
         {
             string payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
@@ -47,13 +56,13 @@ namespace IntelliHouse2000.Pages
                     switch ((ArmedState)armedStateValue)
                     {
                         case ArmedState.Disarmed:
-                            ToastService.ShowInfo("Alarm has been disarmed");
+                            ToastService.ShowInfo($"{languageTable["AlarmDisMessage"]}");
                             break;
                         case ArmedState.PartiallyArmed:
-                            ToastService.ShowInfo("Alarm has been partially armed");
+                            ToastService.ShowInfo($"{languageTable["AlarmPartMessage"]}");
                             break;
                         case ArmedState.FullyArmed:
-                            ToastService.ShowInfo("Alarm has been fully armed");
+                            ToastService.ShowInfo($"{languageTable["AlarmArmMessage"]}");
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
@@ -61,7 +70,7 @@ namespace IntelliHouse2000.Pages
 
                     break;
                 case Constants.MqttCriticalAlarmLogs:
-                    ToastService.ShowError(payload.Replace("Alarm: ", ""));
+                    ToastService.ShowError(payload.Replace("Alarm: ", ""), "Alarm");
                     break;
             }
         }

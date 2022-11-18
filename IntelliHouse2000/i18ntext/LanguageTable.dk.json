@@ -2,10 +2,13 @@
   "Home": "Hjem",
   "Welcome": "Velkommen!",
   "Hello": "Hej",
-  
+
   "AlarmArm": "Tilkoble fuldt",
   "AlarmPart": "Tilkoble halvt",
   "AlarmDis": "Slå fra",
+  "AlarmArmMessage": "Alarm er blevet fully armed",
+  "AlarmPartMessage": "Alarm er blevet partially armed",
+  "AlarmDisMessage": "Alarm er blevet disarmed",
 
   "Climate": "Klima",
   "SeeHumid": "Luftfugtigheden i rummet er: ",
@@ -25,7 +28,10 @@
   "ToasterSetHumidSucces": "Succesfuldt sætte Luftfugtigheden til: ",
   "ToasterSetTempSucces": "Succesfuldt sætte Temperaturen til: ",
 
-  "Log": "Log"
+  "Log": "Log",
+
+  "Help": "Hjælp",
+  "ToasterHelp": "Kontakt os her for mere hjælp: intellihouse2000@gmail.com"
 
 
 
