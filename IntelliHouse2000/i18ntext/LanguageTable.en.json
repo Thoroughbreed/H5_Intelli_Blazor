@@ -6,7 +6,10 @@
   "AlarmArm": "Fully arm",
   "AlarmPart": "Partially arm",
   "AlarmDis": "Disarm",
-  
+  "AlarmArmMessage": "Alarm has been fully armed",
+  "AlarmPartMessage": "Alarm has been partially armed",
+  "AlarmDisMessage": "Alarm has been disarmed",
+
   "Climate": "Climate",
   "SeeHumid": "The humidity in this room is: ",
   "SeeTemp": "The tempreture in this room is: ",

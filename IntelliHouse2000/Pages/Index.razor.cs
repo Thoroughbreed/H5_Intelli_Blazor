@@ -47,13 +47,13 @@ namespace IntelliHouse2000.Pages
                     switch ((ArmedState)armedStateValue)
                     {
                         case ArmedState.Disarmed:
-                            ToastService.ShowInfo("Alarm has been disarmed");
+                            ToastService.ShowInfo($"{languageTable["AlarmDisMessage"]}");
                             break;
                         case ArmedState.PartiallyArmed:
-                            ToastService.ShowInfo("Alarm has been partially armed");
+                            ToastService.ShowInfo($"{languageTable["AlarmPartMessage"]}");
                             break;
                         case ArmedState.FullyArmed:
-                            ToastService.ShowInfo("Alarm has been fully armed");
+                            ToastService.ShowInfo($"{languageTable["AlarmArmMessage"]}");
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
@@ -61,7 +61,7 @@ namespace IntelliHouse2000.Pages
 
                     break;
                 case Constants.MqttCriticalAlarmLogs:
-                    ToastService.ShowError(payload.Replace("Alarm: ", ""));
+                    ToastService.ShowError(payload.Replace("Alarm: ", ""), "Alarm");
                     break;
             }
         }
