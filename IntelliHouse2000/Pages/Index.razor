@@ -1,9 +1,39 @@
 ﻿@page "/"
+@using IntelliHouse2000.Models.Alarm
+@implements IDisposable
+@attribute [Authorize(Roles = "IntelliAdmin, IntelliRead, IntelliWrite")]
 
-<PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<PageTitle>@languageTable["Home"]</PageTitle>
 
-Welcome to your new app.
+<div class="text-center">
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+    <div class="row">
+        <h1>@languageTable["Welcome"]</h1>
+    </div>
+    <AuthorizeView Roles="IntelliAdmin, IntelliWrite">
+        <div class="row">
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Icon="notifications_off" Text="@languageTable["AlarmDis"]" Click="async () => await SetArmedAsync(ArmedState.Disarmed)" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+                </RadzenCard>
+            </div>
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Icon="circle_notifications" Text="@languageTable["AlarmPart"]" Click="async () => await SetArmedAsync(ArmedState.PartiallyArmed)" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
+                </RadzenCard>
+            </div>
+            <div class="col-4">
+                <RadzenCard Class="rz-shadow-10" style="margin: 15px">
+                    <RadzenButton Icon="notification_important" Text="@languageTable["AlarmArm"]" Click="async () => await SetArmedAsync(ArmedState.FullyArmed)" Shade="Shade.Darker" ButtonStyle="ButtonStyle.Danger" class="rz-ripple" />
+                </RadzenCard>
+            </div>
+
+        </div>
+    </AuthorizeView>
+
+
+</div>
+
+
+

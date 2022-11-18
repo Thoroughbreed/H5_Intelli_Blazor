@@ -1,0 +1,38 @@
+{
+  "Home": "Hjem",
+  "Welcome": "Velkommen!",
+  "Hello": "Hej",
+
+  "AlarmArm": "Tilkoble fuldt",
+  "AlarmPart": "Tilkoble halvt",
+  "AlarmDis": "Slå fra",
+  "AlarmArmMessage": "Alarm er blevet fully armed",
+  "AlarmPartMessage": "Alarm er blevet partially armed",
+  "AlarmDisMessage": "Alarm er blevet disarmed",
+
+  "Climate": "Klima",
+  "SeeHumid": "Luftfugtigheden i rummet er: ",
+  "SeeTemp": "Temperaturen i rummet er: ",
+  "SeeAirqual": "Luftkvaliteten for hustet er: ",
+  "SetHumid": "Sæt din prefererede luftfugtigheden: ",
+  "SetTemp": "Sæt din prefererede temperatur: ",
+  "Submit": "Indsend",
+  "DatePicker": "Vælg en start dato: ",
+  "Humid": "Luftfugtighed",
+  "Temp": "Temperatur",
+  "Airquality": "Luftkvalitet",
+  "ToasterError": "Fejl",
+  "ToasterSetHumidError": "kunne IKKE sætte Luftfugtigheden til: ",
+  "ToasterSetTempError": "kunne IKKE sætte Temperaturen til: ",
+  "ToasterSucces": "Succesfuldt",
+  "ToasterSetHumidSucces": "Succesfuldt sætte Luftfugtigheden til: ",
+  "ToasterSetTempSucces": "Succesfuldt sætte Temperaturen til: ",
+
+  "Log": "Log",
+
+  "Help": "Hjælp",
+  "ToasterHelp": "Kontakt os her for mere hjælp: intellihouse2000@gmail.com"
+
+
+
+}

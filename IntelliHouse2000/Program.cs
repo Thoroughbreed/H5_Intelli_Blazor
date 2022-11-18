@@ -1,9 +1,12 @@
 using Blazored.Toast;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Localization;
 using Radzen;
-using System.Reflection.PortableExecutable;
+using IntelliHouse2000.Helpers;
+using IntelliHouse2000.Services.MQTT;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
+
+using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +20,53 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
 
+builder.Services.AddI18nText();
+
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+
+builder.RegisterDependencies();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { "en", "dk", };
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.AddSupportedCultures(supportedCultures);
+    options.AddSupportedUICultures(supportedCultures);
+});
+
+builder.Services
+    .AddAuth0WebAppAuthentication(options => {
+        options.Domain = builder.Configuration["Auth0:Domain"];
+        options.ClientId = builder.Configuration["Auth0:ClientId"];
+        options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
+        options.Scope = "openid profile email roles";
+        options.SkipCookieMiddleware = true;
+    })
+    .WithAccessToken(options =>
+    {
+        options.Audience = builder.Configuration["Auth0:APIIdentifier"];
+    });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+        options.Cookie.IsEssential = true;
+    });
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
+
+var mqttService = app.Services.GetService<IMQTTService>();
+if (mqttService != null) await mqttService.StartAsync();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -27,11 +76,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

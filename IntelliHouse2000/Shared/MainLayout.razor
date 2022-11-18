@@ -9,21 +9,24 @@
     <RadzenNotification />
     <RadzenDialog />
     <div class="sidebar">
-        <NavMenu/>
+        <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>      
+
+        <div class="top-row px-4 auth">
+            <AccessControl />
+            <PageHeader />
+            <LanguageSwithcer />
+        </div>
         <BlazoredToasts Position="ToastPosition.BottomCenter"
-                                      Timeout="10"
-                                      IconType="IconType.FontAwesome"
-                                      ErrorIcon="fas fa-times-circle"
-                                      InfoIcon="fas fa-info"
-                                      SuccessIcon="fas fa-check"
-                                      WarningIcon="fas fa-exclamation-triangle"
-                                      MaxToastCount="3" />
+                        Timeout="5"
+                        IconType="IconType.FontAwesome"
+                        ErrorIcon="fas fa-times-circle"
+                        InfoIcon="fas fa-info"
+                        SuccessIcon="fas fa-check"
+                        WarningIcon="fas fa-exclamation-triangle"
+                        MaxToastCount="3" />
 
         <article class="content px-4">
             @Body

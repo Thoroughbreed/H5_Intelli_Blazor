@@ -1,0 +1,39 @@
+{
+  "Home": "Home",
+  "Welcome": "Welcome!",
+  "Hello": "Hello",
+
+  "AlarmArm": "Fully arm",
+  "AlarmPart": "Partially arm",
+  "AlarmDis": "Disarm",
+  "AlarmArmMessage": "Alarm has been fully armed",
+  "AlarmPartMessage": "Alarm has been partially armed",
+  "AlarmDisMessage": "Alarm has been disarmed",
+
+  "Climate": "Climate",
+  "SeeHumid": "The humidity in this room is: ",
+  "SeeTemp": "The tempreture in this room is: ",
+  "SeeAirqual": "The Airquality for the house is: ",
+  "SetHumid": "Set you prefered humidity: ",
+  "SetTemp": "Set you prefered tempretur: ",
+  "Submit": "Submit",
+  "DatePicker": "Choose a start Date: ",
+  "Humid": "Humidity",
+  "Temp": "Tempretur",
+  "Airquality": "Airquality",
+  "ToasterError": "Error",
+  "ToasterSetHumidError": "Could NOT set the Humidity too: ",
+  "ToasterSetTempError": "Could NOT set the  too: ",
+  "ToasterSucces": "Succes",
+  "ToasterSetHumidSucces": "Successfully set the Humidity too: ",
+  "ToasterSetTempSucces": "Successfully set the tempreture too: ",
+
+
+  "Log": "Log",
+
+  "Help":  "Help",
+  "ToasterHelp": "Contact us here for more help: intellihouse2000@gmail.com"
+
+
+
+}
