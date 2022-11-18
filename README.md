@@ -18,7 +18,8 @@
 - [Architecture diagram](#architecture-diagram)
 - [Summary and rundown](#summary-and-rundown)
 - [Folder Structure](#folder-structure)
-- [API Calls](#api-calls)
+- [API Endpoints](#api-endpoints)
+- [Permissions](#permissions)
 - [MQTT Topics](#mqtt-topics)
 - [Libraries](#libraries)
 - [License](#license)
@@ -67,7 +68,8 @@ Build a Blazor server (or webassembly) web application for the [Intelligent Hous
 The **IntelliHouse2000** is a all-in-one microcontroller combo that provides climate control, monitoring and alarm/entry functions for the entire house. You can have sensors in all rooms, and set the parameters for each sensor.
 If an event is triggered while the alarm is armed, no apparent function will happen in the house, but the log will be updated and the user will get a message<sup>1</sup> with the event, timestamp and what sensor triggered it. 
 If however the alarm is disarmed (that is, the user is home) **IntelliHouse2000** will take action on the event.
-All of this is then displayed on the App for the **IntelliHouse2000**, **IntelliHouse2000App** with a easy to use UI for userfrendlynes.
+All of this is then displayed on the Blazor for the **IntelliHouse2000**, **IntelliHouse2000Blazor** with a easy to use UI for userfrendlynes.
+
 > If you forget to turn off your car in the garage, and the sensor detects rising CO<sub>2</sub> levels, the user will be warned, displays around the house will show the event, and the garage door will open incrementally until the sensor value returns to normal
 
 > If the humidity in the house rises rapidly, the appropriate window will be opened incrementally until the sensor detects a drop in humidity. As an extra function<sup>2</sup> you can add weather sensor as well, so the window *doesn't* open if the humidity outside is higher than inside, or it rains.
@@ -111,6 +113,12 @@ Base URL : https://mqtt-api.tved.it/
 | GET    | /airq         | Get all air quality readings since ts                                  | ts (timestamp) | Datetime format: yyyy-MM-dd HH:mm:ss |
 | GET    | /airq/1       | Get last air quality reading                                           |                |                                      |
 
+# Permissions 
+| Group name   | Description                                                  |
+| :----------- | :----------------------------------------------------------- |
+| IntelliRead  | Vuew Critical and Info logs, as well as all climate data     |
+| IntelliWrite | Arm or disarm the alarm, set target temperature and humidity |
+| IntelliAdmin | View System and User Logs                                    |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
