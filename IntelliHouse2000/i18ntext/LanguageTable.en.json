@@ -29,7 +29,10 @@
   "ToasterSetTempSucces": "Successfully set the tempreture too: ",
 
 
-  "Log": "Log"
+  "Log": "Log",
+
+  "Help":  "Help",
+  "ToasterHelp": "Contact us here for more help: intellihouse2000@gmail.com"
 
 
 

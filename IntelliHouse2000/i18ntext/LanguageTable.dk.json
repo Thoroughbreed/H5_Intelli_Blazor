@@ -28,7 +28,10 @@
   "ToasterSetHumidSucces": "Succesfuldt sætte Luftfugtigheden til: ",
   "ToasterSetTempSucces": "Succesfuldt sætte Temperaturen til: ",
 
-  "Log": "Log"
+  "Log": "Log",
+
+  "Help": "Hjælp",
+  "ToasterHelp": "Kontakt os her for mere hjælp: intellihouse2000@gmail.com"
 
 
 

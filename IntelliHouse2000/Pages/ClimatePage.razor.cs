@@ -48,12 +48,10 @@ namespace IntelliHouse2000.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            // get all data for services
-
             languageTable = await I18nText.GetTextTableAsync<I18nText.LanguageTable>(this);
 
             this.HotKeysContext = this.HotKeys.CreateContext()
-                .Add(ModKeys.None, Keys.F8, Toaster);
+                .Add(ModKeys.Ctrl, Keys.H, Toaster);
 
             #region Get Data Form API
 
@@ -73,7 +71,7 @@ namespace IntelliHouse2000.Pages
 
         }
 
-        void Toaster() => ToastService.ShowInfo("Congtats you just used a Hotkey: F8", "HotKey");
+        void Toaster() => ToastService.ShowInfo($"{languageTable["ToasterHelp"]}", $"{languageTable["Help"]}");
 
         public void Dispose() => HotKeysContext.Dispose();
 
